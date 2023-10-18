@@ -20,8 +20,8 @@ return require('packer').startup(function(use)
   end
   })
 
---  use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
---  use('nvim-treesitter/playground')
+ use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+ use('nvim-treesitter/playground')
   use('theprimeagen/harpoon')
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
@@ -29,6 +29,38 @@ return require('packer').startup(function(use)
   use('christoomey/vim-tmux-navigator')
 
 use "lukas-reineke/indent-blankline.nvim"
+
+
+use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
+
+    use 'neovim/nvim-lspconfig'
+    use 'simrat39/rust-tools.nvim'
+
+
+    -- Completion framework:
+    use 'hrsh7th/nvim-cmp'
+
+    -- LSP completion source:
+    use 'hrsh7th/cmp-nvim-lsp'
+
+    -- Useful completion sources:
+    use 'hrsh7th/cmp-nvim-lua'
+    use 'hrsh7th/cmp-nvim-lsp-signature-help'
+    use 'hrsh7th/cmp-vsnip'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/vim-vsnip'
+
+
+    use 'nvim-tree/nvim-tree.lua'
+
+
+    --use 'folke/trouble.nvim'
+
+--     use 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
+
+
 --  use {
 --  'VonHeikemen/lsp-zero.nvim',
 --  branch = 'v2.x',

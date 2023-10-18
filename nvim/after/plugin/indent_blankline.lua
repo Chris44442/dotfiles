@@ -1,20 +1,18 @@
-vim.opt.termguicolors = true
-vim.cmd [[highlight IndentBlanklineIndent1 guibg=#222222 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent2 guibg=#1d1d1d gui=nocombine]]
+local highlight = {
+    "GreyOne",
+    "GreyTwo",
+}
+local hooks = require "ibl.hooks"
+hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+    vim.api.nvim_set_hl(0, "GreyOne", { bg = "#222222" })
+    vim.api.nvim_set_hl(0, "GreyTwo", { bg = "#1d1d1d" })
+end)
 
-require("indent_blankline").setup {
-  char = "",
-  char_highlight_list = {
-        "IndentBlanklineIndent1",
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
-        "IndentBlanklineIndent2",
-  },
-  space_char_highlight_list = {
-    "IndentBlanklineIndent1",
-        "IndentBlanklineIndent1",
-    "IndentBlanklineIndent2",
-    "IndentBlanklineIndent2",
-  },
-  show_trailing_blankline_indent = false,
+require("ibl").setup {
+    indent = { highlight = highlight, char = "" },
+    whitespace = {
+        highlight = highlight,
+        remove_blankline_trail = false,
+    },
+    scope = { enabled = false },
 }
