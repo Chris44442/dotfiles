@@ -27,3 +27,11 @@ styles.lvim = {
   sections = {
     lualine_a = {
       { "mode" },
+    
+
+in /home/chris/.config/lvim/config.lua add
+```
+vim.cmd[[set list]]
+vim.cmd[[set listchars=space:⋅,trail:⋅,nbsp:⋅]]
+
+```
