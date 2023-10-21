@@ -35,3 +35,6 @@ vim.cmd[[set list]]
 vim.cmd[[set listchars=space:⋅,trail:⋅,nbsp:⋅]]
 
 ```
+
+
+K is mapped to vim.lsp.buf.hover() unless 'keywordprg' is customized or a custom keymap for K exists.
