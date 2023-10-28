@@ -86,3 +86,7 @@ Zo
 :mkview
 
 :loadview
+
+## Find and replace
+
+/ ctrl+r ctrl+f Return cgn <word> Esc .
