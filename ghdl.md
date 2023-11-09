@@ -3,8 +3,6 @@ mv contents to ~/.local/
 sudo apt install gnat-10
 sudo apt install gtkwave
 
-https://github.com/jrmoulton/tmux-sessionizer
-
 #!/bin/bash
 
 rm -f *.cf sim.log

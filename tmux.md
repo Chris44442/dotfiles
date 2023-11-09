@@ -1,3 +1,13 @@
+
+https://github.com/jrmoulton/tmux-sessionizer
+
+in .tmux.config add:
+```
+bind C-o display-popup -E "tms"
+unbind C-e
+bind C-e display-popup -E "tms switch"
+```
+
 create new session
 
 ```bash
