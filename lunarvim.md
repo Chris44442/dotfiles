@@ -2,7 +2,11 @@
 
 ```bash
 LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)
+```
 
+```bash
+echo "euoashanoeuanoetsaeouhtaoeuntoeauhtuaoehtaoeutnaoeuhtttttt \
+  tttttanoeutaoeuhtaeusohoeauhtaeuohtsaeounaoeuthsaeounsasoent"
 ```
 
 What if you remove exec -a lvim (exec -a "$NVIM_APPNAME" in newer versions) from ~/.local/bin/lvim and then run lvim?
