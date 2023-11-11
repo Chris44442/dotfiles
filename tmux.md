@@ -26,5 +26,3 @@ Ctrl + b, %
 Ctrl + b, "
 ```
 
-Kill options
-
