@@ -34,6 +34,7 @@ styles.lvim = {
 ```
 
 in /home/chris/.config/lvim/config.lua add
+
 ```lua
 vim.cmd[[set list]]
 vim.cmd[[set listchars=space:⋅,trail:⋅,nbsp:⋅]]
@@ -62,18 +63,10 @@ vim.api.nvim_set_keymap('n', '<F5>', ':lua startvhdlls()<CR>', { noremap = true,
 
 This will start the LS by hitting the F5 key.
 
-Place the `.vhdl_ls.toml` file to the home dir `~`. It should contain:
+Place the `.vhdl_ls.toml` file to the home dir `~`. It should look something like this:
 
-```
+```toml
 [libraries]
-#std.files = [
-  #'/home/chris/vhdl_ls/vhdl_libraries/std/*.vhd',
-#]
-#ieee.files = [
-  #'/home/chris/vhdl_ls/vhdl_libraries/ieee2008/*.vhdl',
-  #'/home/chris/vhdl_ls/vhdl_libraries/synopsys/*.vhdl',
-  #'/home/chris/vhdl_ls/vhdl_libraries/vital2000/*.vhdl',
-#]
 lib1.files = [
   '/home/chris/repo/x_rust_start_delete_me/stuff.vhd',
 ]
