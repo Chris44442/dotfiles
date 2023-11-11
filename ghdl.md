@@ -1,8 +1,13 @@
-download ghdl-gha-ubuntu-22.04-mcode.tgz from github
-mv contents to ~/.local/
+download ghdl-gha-ubuntu-22.04-mcode.tgz from github  
+mv contents to ~/.local/  
+```bash
 sudo apt install gnat-10
 sudo apt install gtkwave
+```
 
+Simulation script should look something like this:
+
+```bash
 #!/bin/bash
 
 rm -f *.cf sim.log
@@ -25,16 +30,8 @@ ghdl -a --std=08 --work=unisim $OBUFDS
 ghdl -a --std=08 --work=unisim $IOBUF
 ghdl -a --std=08 --work=unisim $IBUF
 ghdl -a --std=08 -frelaxed --work=unisim $OBUF
-ghdl -e --std=08 --work=unisim IBUFDS
-ghdl -e --std=08 --work=unisim IOBUFDS
-ghdl -e --std=08 --work=unisim OBUFDS
-ghdl -e --std=08 --work=unisim IOBUF
-ghdl -e --std=08 --work=unisim IBUF
-ghdl -e --std=08 -frelaxed --work=unisim OBUF
 ghdl -a --std=08 ../../src/dut.vhd
 ghdl -a --std=08 dut_tb.vhd
-ghdl -e --std=08 -frelaxed dut_tb
-
 ghdl -r --std=08 -frelaxed dut_tb --vcd=waveform.vcd >sim.log
 
 if [ "$1" = "-v" ] || [ "$2" = "-v" ]
@@ -52,4 +49,5 @@ if [ "$1" = "-g" ] || [ "$2" = "-g" ]
 then
   gtkwave waveform.vcd gtk.gtkw
 fi
+```
 
