@@ -12,7 +12,11 @@
 vim.cmd[[set list]]
 vim.cmd[[set listchars=space:⋅]]
 
-vim.cmd('set number')
+
+lvim.builtin.indentlines.active = false
+lvim.builtin.lualine.sections.lualine_a = {"mode"}
+
+-- vim.cmd('set number')
 vim.cmd('set relativenumber')
 
 -- vhdl language server

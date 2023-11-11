@@ -15,30 +15,9 @@ sudo install lazygit /usr/local/bin
 
 ## Config
 
+```lua
 ~/.local/share/lunarvim/lvim/lua/lvim/core/lualine/styles.lua
-
-```lua
-styles.lvim = {
-  style = "lvim",
-  options = {
-    theme = "auto",
-    globalstatus = true,
-    icons_enabled = lvim.use_icons,
-    component_separators = { left = "", right = "" },
-    section_separators = { left = "", right = "" },
-    disabled_filetypes = { "alpha" },
-  },
-  sections = {
-    lualine_a = {
-      { "mode" },
-```
-
-in /home/chris/.config/lvim/config.lua add
-
-```lua
-vim.cmd[[set list]]
-vim.cmd[[set listchars=space:⋅,trail:⋅,nbsp:⋅]]
-
+~/.config/lvim/config.lua
 ```
 
 K is mapped to vim.lsp.buf.hover() unless 'keywordprg' is customized or a custom keymap for K exists.
