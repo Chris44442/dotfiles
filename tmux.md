@@ -8,50 +8,23 @@ unbind C-e
 bind C-e display-popup -E "tms switch"
 ```
 
-create new session
+create new session, attach to old session, kill
 
 ```bash
 tmux new-session -sSession1
-```
-
-attach to old session
-
-```bash
 tmux attach-session -t Session1
+tmux kill
 ```
 
-New window
+New window, Switch between windows, Session overview, Horizontal pane add, Vertical pane add
 
 ```bash
 Ctrl + b, c
-```
-
-Switch between windows
-
-```bash
 Ctrl + b, n
+Ctrl + b, s
+Ctrl + b, %
+Ctrl + b, "
 ```
 
 Kill options
 
-```bash
-tmux kill
-```
-
-Session overview
-
-```bash
-Ctrl + b, s
-```
-
-Horizontal pane add
-
-```bash
-Ctrl + b, %
-```
-
-Vertical pane add
-
-```bash
-Ctrl + b, "
-```
