@@ -33,3 +33,13 @@ sudo apt install dos2unix
 sudo apt install make
 sudo apt install build-essential
 ```
+
+## VS Code
+
+disable: Editor: Use Tab Stops Inserting and deleting whitespace follows tab stops
+
+## SVN CLI partial checkout
+
+svn checkout --depth empty https://neptun.ngr.de.ebs.corp/svn/trxs/RAP-SW/FPGA/FRP_C_S10/trunk/  
+svn update --set-depth infinity trunk/Sources
+

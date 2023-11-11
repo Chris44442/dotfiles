@@ -1,5 +1,0 @@
-require("chris.remap")
-require("chris.packer")
-require("chris.set")
-require("chris.vhdl")
-require("chris.rust")
