@@ -20,6 +20,19 @@ lvim.builtin.lualine.sections.lualine_a = {"mode"}
 -- Yank and paste from/to clipboard. You need to apt install xclip
 vim.opt.clipboard = 'unnamedplus'
 
+lvim.plugins = {
+  {"smoka7/hop.nvim"},
+}
+require'hop'.setup { keys = 'uhetpgcasrkmidxbon'}
+local hop = require('hop')
+local directions = require('hop.hint').HintDirection
+vim.keymap.set('', 'f', function()
+  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = false })
+end, {remap=true})
+vim.keymap.set('', 't', function()
+  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = false })
+end, {remap=true})
+
 -- Relative line numbers
 vim.cmd('set relativenumber')
 
