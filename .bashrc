@@ -119,6 +119,7 @@ fi
 
 alias wtr='curl wttr.in/ulm?format=3'
 alias cr='cargo run'
+alias vim='nvim'
 alias et='lvim'
 alias ga='git add'
 alias gs='git status'
@@ -134,10 +135,22 @@ alias tk='tmux kill-session'
 
 PATH="$HOME/.local/bin:$PATH"
 
-export QSYS_ROOTDIR="/home/chris/intelFPGA_lite/22.1std/quartus/sopc_builder/bin"
-export QUARTUS_ROOTDIR_OVERRIDE="/home/chris/intelFPGA_lite/22.1std"
-export QUARTUS="/home/chris/intelFPGA_lite/22.1std"
+export QSYS_ROOTDIR="/home/chris/intelFPGA_lite/23.1std/quartus/sopc_builder/bin"
+export QUARTUS_ROOTDIR_OVERRIDE="/home/chris/intelFPGA_lite/23.1std"
+export QUARTUS="/home/chris/intelFPGA_lite/23.1std"
 
 alias on='lazydocker'
-alias gg='lazygit'
+alias g='lazygit'
 
+export FZF_CTRL_T_COMMAND='rg --hidden -l --glob=!.git/ ""'
+export FZF_DEFAULT_COMMAND='rg --hidden -l --glob=!.git/ ""'
+alias te='selected_file=$(fzf --preview "cat -n {}" --select-1) && [ -n "$selected_file" ] && lvim "$selected_file"'
+source /usr/share/doc/fzf/examples/key-bindings.bash
+
+export EDITOR=lvim
+
+export LF_ICONS="\
+di=🗀:\
+fi=🗎:\
+ex=♘:\
+"
