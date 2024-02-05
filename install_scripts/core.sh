@@ -21,8 +21,16 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all
 # TODO remove .fzf dir and mv fzf keybindings.bash to .config dir
 
+mkdir -p ~/.local/bin/
+cd ~/.local/bin/
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+chmod u+x nvim.appimage
+cd
+
+LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)
+
 # wget https://dl.thorium.rocks/debian/dists/stable/thorium.list
-# sudo mv thorium.list /etc/apt/sources.list.d/
-# sudo apt-get update
-# sudo apt-get install -y thorium-browser
+# mv thorium.list /etc/apt/sources.list.d/
+# apt-get update
+# apt-get install -y thorium-browser
 
