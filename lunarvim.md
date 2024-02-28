@@ -55,3 +55,19 @@ lib1.files = [
 
 Press a, r, d for new, rename, delete file.
 
+## clangd language server
+
+include path of c header files:
+export CPATH="your/include:more/include:/usr/include"
+
+## Rust Analyzer
+
+bare metal (no_std, no main), add to Cargo.toml:
+
+[[bin]]
+name = "app"
+test = false
+bench = false
+
+replace app with the name of your rust program, which is stated in the same file
+
