@@ -10,6 +10,8 @@ lvim.plugins = {
 
 vim.api.nvim_set_keymap('n', '<C-d>', '<C-d>zz', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-u>', '<C-u>zz', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<PageUp>', '<Nop>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<PageDown>', '<Nop>', { noremap = true, silent = true})
 
 -- Render Whitespaces
 vim.cmd[[set list]]
