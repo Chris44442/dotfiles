@@ -20,10 +20,6 @@ vim.cmd[[set listchars=space:·]]
 -- Deactivate indentlines
 lvim.builtin.indentlines.active = false
 
--- Annoying workaround to add vhdl commentstring, press C-F5 twice with a few seconds inbetween
-lvim.builtin.treesitter.context_commentstring.config.vhdl = "-- %s"
-vim.api.nvim_set_keymap('n', '<C-F5>', ':e /home/chris/.config/lvim/config.lua<CR>:bd<CR>', { noremap = true, silent = true })
-
 -- Make editing modes more visible
 lvim.builtin.lualine.sections.lualine_a = {"mode"}
 
@@ -62,6 +58,10 @@ end, {remap=true})
 
 -- Relative line numbers
 vim.cmd('set relativenumber')
+
+-- VHDL comment
+local ft = require('Comment.ft')
+ft.set('vhdl', '-- %s')
 
 -- VHDL language server
 function STARTVHDLLS()
