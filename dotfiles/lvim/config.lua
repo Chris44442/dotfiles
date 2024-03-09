@@ -11,6 +11,9 @@ vim.api.nvim_set_keymap('n', '<C-u>', '<C-u>zz', { noremap = true, silent = true
 vim.api.nvim_set_keymap('', '<PageUp>', '<Nop>', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('', '<PageDown>', '<Nop>', { noremap = true, silent = true})
 
+-- disable the automatically installed snippets, the user snippets are in ./luasnippets/
+lvim.builtin.luasnip.sources.friendly_snippets = false
+
 -- autocomplete show first suggested item as ghost text
 lvim.builtin.cmp.experimental.ghost_text = true
 
