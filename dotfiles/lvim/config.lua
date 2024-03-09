@@ -1,4 +1,4 @@
-lvim.builtin.indentlines.active = false
+lvim.builtin.indentlines.active=false
 lvim.builtin.bufferline.active=false
 lvim.plugins = {
   {"smoka7/hop.nvim"},
@@ -48,8 +48,6 @@ vim.api.nvim_set_keymap('n', '<C-n>', ":lua require('harpoon.ui').nav_file(3)<CR
 vim.api.nvim_set_keymap('n', '<C-s>', ":lua require('harpoon.ui').nav_file(4)<CR>", {noremap=true, silent=true})
 vim.api.nvim_set_keymap('n', '<C-m>', ":lua require('harpoon.ui').nav_file(5)<CR>", {noremap=true, silent=true})
 vim.api.nvim_set_keymap('n', '<C-w>', ":lua require('harpoon.ui').nav_file(6)<CR>", {noremap=true, silent=true})
-vim.api.nvim_set_keymap('n', '<C-v>', ":lua require('harpoon.ui').nav_file(7)<CR>", {noremap=true, silent=true})
-vim.api.nvim_set_keymap('n', '<C-z>', ":lua require('harpoon.ui').nav_file(8)<CR>", {noremap=true, silent=true})
 vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {command = "highlight! HarpoonInactive guibg=#NONE guifg=#999999" })
 vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {command = "highlight! HarpoonNumberInactive guibg=#NONE guifg=#999999" })
 
