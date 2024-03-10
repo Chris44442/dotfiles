@@ -41,16 +41,16 @@ vim.opt.clipboard = 'unnamedplus'
 -- Open Lazygit with leader+g
 lvim.builtin.which_key.mappings.g = { "<cmd>lua require 'lvim.core.terminal'.lazygit_toggle()<cr>", "Lazygit" }
 
--- harpoon
+-- Harpoon
 lvim.builtin.which_key.mappings.h = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Harpoon Menu" }
 lvim.builtin.which_key.mappings.t = { "<cmd>lua require('harpoon.mark').add_file()<CR>", "Add to Harpoon" }
 require'harpoon'.setup {tabline = true}
-vim.api.nvim_set_keymap('n', '<C-h>', ":lua require('harpoon.ui').nav_file(1)<CR>", {noremap=true, silent=true})
-vim.api.nvim_set_keymap('n', '<C-t>', ":lua require('harpoon.ui').nav_file(2)<CR>", {noremap=true, silent=true})
-vim.api.nvim_set_keymap('n', '<C-n>', ":lua require('harpoon.ui').nav_file(3)<CR>", {noremap=true, silent=true})
-vim.api.nvim_set_keymap('n', '<C-s>', ":lua require('harpoon.ui').nav_file(4)<CR>", {noremap=true, silent=true})
-vim.api.nvim_set_keymap('n', '<C-m>', ":lua require('harpoon.ui').nav_file(5)<CR>", {noremap=true, silent=true})
-vim.api.nvim_set_keymap('n', '<C-w>', ":lua require('harpoon.ui').nav_file(6)<CR>", {noremap=true, silent=true})
+vim.api.nvim_set_keymap('', '<C-h>', ":lua require('harpoon.ui').nav_file(1)<CR>", {noremap=true, silent=true})
+vim.api.nvim_set_keymap('', '<C-t>', ":lua require('harpoon.ui').nav_file(2)<CR>", {noremap=true, silent=true})
+vim.api.nvim_set_keymap('', '<C-n>', ":lua require('harpoon.ui').nav_file(3)<CR>", {noremap=true, silent=true})
+vim.api.nvim_set_keymap('', '<C-s>', ":lua require('harpoon.ui').nav_file(4)<CR>", {noremap=true, silent=true})
+vim.api.nvim_set_keymap('', '<C-m>', ":lua require('harpoon.ui').nav_file(5)<CR>", {noremap=true, silent=true})
+vim.api.nvim_set_keymap('', '<C-w>', ":lua require('harpoon.ui').nav_file(6)<CR>", {noremap=true, silent=true})
 vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {command = "highlight! HarpoonInactive guibg=#NONE guifg=#999999" })
 vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {command = "highlight! HarpoonNumberInactive guibg=#NONE guifg=#999999" })
 
@@ -69,12 +69,24 @@ end, {remap=true})
 local ft = require('Comment.ft')
 ft.set('vhdl', '-- %s')
 
--- VHDL language server
+-- Detach lsp client of current buffer from its language server
+vim.api.nvim_set_keymap('n', '<F5>', ':lua DETACHFROMLS()<CR>', { noremap = true, silent = true })
+function DETACHFROMLS()
+  vim.lsp.buf_detach_client(0, vim.lsp.get_active_clients({bufnr=0})[1].id)
+end
+
+-- Autostart VHDL language server
+vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"},{
+  pattern = {"*.vhdl", "*.vhd" },
+  callback = function ()
+    STARTVHDLLS()
+  end
+ })
 function STARTVHDLLS()
   vim.lsp.start({
     name = 'vhdl_ls',
     cmd = {'vhdl_ls'},
+    root_dir = vim.fs.dirname(vim.fs.find({'vhdl_ls.toml'}, { upward = true })[1]),
   })
 end
-vim.api.nvim_set_keymap('n', '<F5>', ':lua STARTVHDLLS()<CR>', { noremap = true, silent = true })
 
