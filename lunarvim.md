@@ -1,11 +1,12 @@
-# LunarVim
+# Install LunarVim
 
 ```bash
 LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)
 ```
 
-If it cannot be executed:
-What if you remove exec -a lvim (exec -a "$NVIM_APPNAME" in newer versions) from ~/.local/bin/lvim and then run lvim?
+You might need to remove exec -a lvim (exec -a "$NVIM_APPNAME" in newer versions) from ~/.local/bin/lvim and then run lvim?
+
+## Install Lazygit
 
 ```bash
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
@@ -14,28 +15,22 @@ tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
 ```
 
-## Config
+## Configuration Directories
 
-```lua
+```bash
 ~/.local/share/lunarvim/lvim/lua/lvim/core/lualine/styles.lua
 ~/.config/lvim/config.lua
 ~/.config/lvim/luasnippets/
 ```
 
-K is mapped to vim.lsp.buf.hover() unless 'keywordprg' is customized or a custom keymap for K exists.
-
-## VHDL language server
+## VHDL Language Server
 
 - Download `vhdl_ls-x86_64-unknown-linux-gnu.zip` from [github](https://github.com/VHDL-LS/rust_hdl/releases).
 - Place the `vhdl_ls` binary into `~/.local/bin/`. It must be on PATH, you can try it by running it in the terminal.
 - Place the `.vhdl_ls.toml` file to the home dir `~`. Place `vhdl_ls.toml` (without the dot) in the work directory.
 - With the config.lua setting the language server should now start upon opening .vhd files and be connected to the lsp client.
 
-## Nvim Tree
-
-Press a, r, d for new, rename, delete file.
-
-## clangd language server
+## Clangd
 
 include path of c header files:
 export CPATH="your/include:more/include:/usr/include"
