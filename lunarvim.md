@@ -33,18 +33,20 @@ sudo install lazygit /usr/local/bin
 ## Clangd
 
 include path of c header files:
+
+```bash
 export CPATH="your/include:more/include:/usr/include"
+```
 
 ## Rust Analyzer
 
-bare metal (no_std, no main), add to Cargo.toml:
+for bare metal (no_std, no main) code, add to Cargo.toml:
 
 ```toml
 [[bin]]
-name = "app"
+name = "app" #replace with the actual app name, which is stated in the same file
 test = false
 bench = false
 ```
 
-replace app with the name of your rust program, which is stated in the same file
 
