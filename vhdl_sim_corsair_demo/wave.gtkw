@@ -1,0 +1,29 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Sat Mar 16 18:42:52 2024
+[*]
+[dumpfile] "/home/chris/repo/starte_corsair_test/vunit_out/test_output/lib.corsair_tb.all_d64cb05cb99e410922d9cc7f07582503fca176c4/ghdl/wave.vcd"
+[dumpfile_mtime] "Sat Mar 16 18:42:32 2024"
+[dumpfile_size] 7425
+[savefile] "/home/chris/repo/starte_corsair_test/wave.gtkw"
+[timestart] 0
+[size] 2560 1368
+[pos] -1 -1
+*-25.357260 264100000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] corsair_tb.
+[sst_width] 233
+[signals_width] 342
+[sst_expanded] 1
+[sst_vpaned_height] 406
+@28
+corsair_tb.clk
+@22
+corsair_tb.raddr[15:0]
+@28
+corsair_tb.ren
+@22
+corsair_tb.rdata[31:0]
+@29
+corsair_tb.rvalid
+[pattern_trace] 1
+[pattern_trace] 0

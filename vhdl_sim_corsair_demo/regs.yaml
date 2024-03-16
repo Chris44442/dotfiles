@@ -1,0 +1,61 @@
+regmap:
+-   name: header
+    description: header_des
+    address: 4
+    bitfields:
+    -   name: header_name
+        description: neame
+        reset: 0
+        width: 32
+        lsb: 0
+        access: ro
+        hardware: i
+        enums: []
+-   name: data0
+    description: Data register
+    address: 8
+    bitfields:
+    -   name: data0_name
+        description: data0_description
+        reset: 0
+        width: 32
+        lsb: 0
+        access: ro
+        hardware: i
+        enums: []
+-   name: data1
+    description: Data register
+    address: 12
+    bitfields:
+    -   name: data1_name
+        description: data0_description
+        reset: 0
+        width: 32
+        lsb: 0
+        access: ro
+        hardware: i
+        enums: []
+-   name: data2
+    description: Data register
+    address: 16
+    bitfields:
+    -   name: data1_name
+        description: data0_description
+        reset: 0
+        width: 32
+        lsb: 0
+        access: ro
+        hardware: i
+        enums: []
+-   name: trailer
+    description: Data register
+    address: 20
+    bitfields:
+    -   name: data1_name
+        description: data0_description
+        reset: 0
+        width: 32
+        lsb: 0
+        access: ro
+        hardware: i
+        enums: []
