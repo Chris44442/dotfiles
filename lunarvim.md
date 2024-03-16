@@ -39,10 +39,12 @@ export CPATH="your/include:more/include:/usr/include"
 
 bare metal (no_std, no main), add to Cargo.toml:
 
+```toml
 [[bin]]
 name = "app"
 test = false
 bench = false
+```
 
 replace app with the name of your rust program, which is stated in the same file
 
