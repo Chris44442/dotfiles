@@ -7,3 +7,4 @@
 archinstall
 ```
 
+extra packages: firefox git python3 make
