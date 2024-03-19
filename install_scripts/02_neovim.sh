@@ -8,7 +8,7 @@ cd ~/.local/
 tar xzvf nvim-linux64.tar.gz
 rm nvim-linux64.tar.gz
 cd
-export PATH="/home/chris/.local/nvim-linux64/bin:${PATH}"
+# export PATH="/home/chris/.local/nvim-linux64/bin:${PATH}"
 echo "export PATH=\"/home/chris/.local/nvim-linux64/bin:\${PATH}\"" >> /home/chris/.bashrc
 
 # cd ./local
