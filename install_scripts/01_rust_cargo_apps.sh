@@ -1,7 +1,7 @@
 #!/bin/bash
 
 curl https://sh.rustup.rs -sSf | sh -s -- -y
-export PATH="/home/cb/.cargo/bin:${PATH}"
+export PATH="/home/chris/.cargo/bin:${PATH}"
 
 cargo install alacritty
 cargo install bat
