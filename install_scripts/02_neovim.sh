@@ -11,6 +11,6 @@ cd
 export PATH="/home/chris/.local/nvim-linux64/bin:${PATH}"
 echo "export PATH=\"/home/chris/.local/nvim-linux64/bin:\${PATH}\"" >> /home/chris/.bashrc
 
-cd ./local
+# cd ./local
 # TODO lunarvim
 
