@@ -15,7 +15,11 @@ $CARGO_PATH/cargo install kalker
 $CARGO_PATH/cargo install vhdl_ls
 
 cd $CARGO_PATH/..
-wget https://github.com/VHDL-LS/rust_hdl/tree/master/vhdl_libraries
+mkdir tmp
+cd tmp
+git clone https://github.com/VHDL-LS/rust_hdl.git
+
+
 
 cp ~/HowToDocs/dotfiles/.vhdl_ls.toml ~/.vhdl_ls.toml
 
