@@ -18,6 +18,9 @@ cd $CARGO_PATH/..
 mkdir tmp
 cd tmp
 git clone https://github.com/VHDL-LS/rust_hdl.git
+cp rust_hdl/vhdl_libraries ../..
+cd ../..
+rm -rf tmp
 
 
 
