@@ -1,7 +1,9 @@
 #!/bin/bash
 
-lookandfeeltool -a org.kde.breezedark.desktop
+# lookandfeeltool -a org.kde.breezedark.desktop
 
-echo "CHANGE ICONS MANUALLY, E.G. BUUF OR CANDY"
-echo "CHANGE WINDOW DECORATION TO PLASTIK"
+echo "change colors to breezedark"
+echo "change icons manually, e.g. buuf or candy"
+echo "change window decoration to plastik"
+echo "change login screen"
 

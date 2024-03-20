@@ -8,4 +8,4 @@
 archinstall
 ```
 
-extra packages: firefox git python3 make
+extra packages: firefox git pcmanfm
