@@ -12,13 +12,13 @@
 # echo "export PATH=\"/home/chris/.local/nvim-linux64/bin:\${PATH}\"" >> /home/chris/.bashrc
 
 
-LUNARVIM_PATH="/home/chris/HowToDocs/install_scripts/lunarvim"
-LUNARVIM_PATH_DEST="/home/chris/.local/share/lunarvim/lvim"
+LUNARVIM_PATH="/home/chris/HowToDocs/install_scripts/lvim"
+LUNARVIM_PATH_DEST="/home/chris/.local/share/lunarvim"
 
 mkdir -p $LUNARVIM_PATH_DEST
 cp -r $LUNARVIM_PATH $LUNARVIM_PATH_DEST
-mv $LUNARVIM_PATH_DEST/lvim/lvim ~/.local/nvim-linux64/bin/lvim
-mv $LUNARVIM_PATH_DEST/lvim/ ~/.config/lvim/
+# mv $LUNARVIM_PATH_DEST/lvim/lvim ~/.local/nvim-linux64/bin/lvim
+# mv $LUNARVIM_PATH_DEST/lvim/ ~/.config/lvim/
 
 # cd ./local
 # TODO lunarvim
