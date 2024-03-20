@@ -12,8 +12,8 @@
 # echo "export PATH=\"/home/chris/.local/nvim-linux64/bin:\${PATH}\"" >> /home/chris/.bashrc
 
 
-LUNARVIM_PATH="/home/chris/HowToDocs/install_scripts/lunarvim/"
-LUNARVIM_PATH_DEST="/home/chris/.local/share/lunarvim/lvim/"
+LUNARVIM_PATH="/home/chris/HowToDocs/install_scripts/lunarvim"
+LUNARVIM_PATH_DEST="/home/chris/.local/share/lunarvim/lvim"
 
 mkdir -p $LUNARVIM_PATH_DEST
 cp -r $LUNARVIM_PATH $LUNARVIM_PATH_DEST
