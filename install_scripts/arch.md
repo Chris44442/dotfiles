@@ -8,4 +8,4 @@
 archinstall
 ```
 
-extra packages: firefox git pcmanfm
+extra packages: git pcmanfm gtkwave python3 python-pip
