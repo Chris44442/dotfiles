@@ -1,4 +1,6 @@
 alias cr='cargo run'
+alias cat='bat'
+alias grep='rg'
 alias et='lvim'
 alias uh='eza -la --group-directories-first -t=modified --time-style=long-iso'
 alias uhh='eza -la --group-directories-first -t=modified --time-style=long-iso -T -L=2 -I=".git"'
