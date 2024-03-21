@@ -7,4 +7,5 @@ tar -xf $GHDL
 rm $GHDL
 
 pip3 install vunit_hdl --break-system-packages
+pip3 install corsair --break-system-packages
 
