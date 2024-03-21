@@ -12,3 +12,6 @@ export FZF_CTRL_T_COMMAND='rg --hidden -l --glob=!.git/ ""'
 export FZF_DEFAULT_COMMAND='rg --hidden -l --glob=!.git/ ""'
 export EDITOR=lvim
 
+source ~/HowToDocs/install_scripts/completion.bash
+source ~/HowToDocs/install_scripts/key-bindings.bash
+
