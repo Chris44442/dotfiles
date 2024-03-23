@@ -3,6 +3,7 @@
 - download iso to usb stick and boot from it, then run:
 
 ```bash
+# pacman-key --init
 # pacman -Sy archlinux-keyring
 # pacman -S archinstall
 archinstall
