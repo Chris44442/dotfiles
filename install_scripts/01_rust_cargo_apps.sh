@@ -14,6 +14,4 @@ $CARGO_PATH/cargo install ripgrep
 $CARGO_PATH/cargo install du-dust
 $CARGO_PATH/cargo install tmux-sessionizer
 $CARGO_PATH/cargo install kalker
-$CARGO_PATH/cargo install skim
-
 
