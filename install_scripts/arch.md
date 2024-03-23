@@ -9,4 +9,5 @@
 archinstall
 ```
 
-extra packages: git llvm gtkwave python python-pip base-devel docker tmux xclip
+extra packages: git llvm gtkwave python python-pip base-devel docker tmux xclip bash-completion
+
