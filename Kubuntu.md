@@ -120,24 +120,6 @@ xrandr --output screen-name --scale 1.2x1.2
 
 xrandr --output screen-name --scale 1x1
 
-## Curl
-
-Install Curl using
-
-```
-sudo apt install curl
-```
-
-## VS Code
-
-Download the [.deb file](https://code.visualstudio.com/download). Install vscode and g++ compiler, then run VS Code:
-
-```
-sudo dpkg -i your_downloaded_file.deb
-sudo apt install g++
-code
-```
-
 ## Color Themes 
 
 clone candy-icons github to /usr/share/icons
