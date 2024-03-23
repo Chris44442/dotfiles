@@ -8,4 +8,4 @@
 archinstall
 ```
 
-extra packages: git pcmanfm gcc-ada gtkwave python3 python-pip fzf base-devel
+extra packages: git llvm gtkwave python3 python-pip base-devel docker
