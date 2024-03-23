@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo pacman -Syu
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 
 CARGO_PATH="/home/chris/.cargo/bin"
