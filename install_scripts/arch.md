@@ -8,4 +8,4 @@
 archinstall
 ```
 
-extra packages: git llvm gtkwave python3 python-pip base-devel docker
+extra packages: git llvm gtkwave python3 python-pip base-devel docker tmux
