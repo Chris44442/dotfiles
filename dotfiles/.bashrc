@@ -12,8 +12,7 @@ alias g='lazygit'
 # export QUARTUS="/home/chris/intelFPGA_lite/23.1std"
 export EDITOR=lvim
 
-source ~/HowToDocs/install_scripts/completion.bash
-source ~/HowToDocs/install_scripts/key-bindings.bash
+source ~/.config/key-bindings.bash
 
 export PATH="/home/chris/.local/bin:${PATH}"
 
