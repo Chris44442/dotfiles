@@ -15,3 +15,5 @@ export EDITOR=lvim
 source ~/HowToDocs/install_scripts/completion.bash
 source ~/HowToDocs/install_scripts/key-bindings.bash
 
+export PATH="/home/chris/.local/bin:${PATH}"
+
