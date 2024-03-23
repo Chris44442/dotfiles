@@ -11,4 +11,5 @@ mkdir build && cd build
 ../configure
 make
 sudo make install
+rm -rf ~/HowToDocs/install_scripts/nvc
 
