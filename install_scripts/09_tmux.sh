@@ -1,6 +1,8 @@
 #!/bin/bash
 
-cp ~/HowToFiles/dotfiles/.tmux.conf ~/.tmux.conf
+cp ~/HowToDocs/dotfiles/.tmux.conf ~/.tmux.conf
+
+
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 cd ~/.tmux/plugins/tpm/scripts/
