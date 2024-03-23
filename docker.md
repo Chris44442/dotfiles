@@ -101,3 +101,13 @@ When a container is running you can access its terminal with:
 ```
 sudo docker exec -it my-container /bin/bash
 ```
+
+
+## Arch
+
+```bash
+pacman -S docker
+sudo systemctl enable docker.service
+sudo usermod -aG docker your_username
+```
+
