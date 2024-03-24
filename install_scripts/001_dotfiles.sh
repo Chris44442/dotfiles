@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cat ~/HowToFiles/dotfiles/.bashrc >> ~/.bashrc
+cat ~/HowToDocs/dotfiles/.bashrc >> ~/.bashrc
 

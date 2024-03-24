@@ -8,5 +8,5 @@
   #'/home/chris/vhdl_ls/vhdl_libraries/vital2000/*.vhdl',
 #]
 lib1.files = [
-  '/home/chris/repo/x_rust_start_delete_me/stuff.vhd',
+  # '/home/chris/repo/x_rust_start_delete_me/stuff.vhd',
 ]
