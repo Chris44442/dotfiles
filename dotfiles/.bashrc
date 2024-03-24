@@ -1,5 +1,6 @@
 alias cr='cargo run'
 alias cat='bat'
+alias find='fd'
 alias grep='rg'
 alias et='lvim'
 alias du='dust'
