@@ -9,5 +9,26 @@
 archinstall
 ```
 
-extra packages: git llvm gtkwave python python-pip base-devel docker tmux xclip bash-completion go
+extra packages:
+- git
+- llvm
+- gtkwave
+- python
+- python-pip
+- base-devel
+- docker
+- tmux
+- xclip
+- bash-completion
+- go
+- neovim
+- lazygit
+
+## Clone Repo with install scripts
+
+```bash
+git clone https://github.com/Chris44442/HowToDocs.git
+```
+
+Run install scripts from the install_script dir
 
