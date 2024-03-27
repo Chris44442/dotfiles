@@ -32,3 +32,10 @@ git clone https://github.com/Chris44442/HowToDocs.git
 
 Run install scripts from the install_script dir
 
+## AwesomeWM
+
+```bash
+yay -S awesome-git
+sudo pacman -S playerctl
+```
+
