@@ -1,6 +1,8 @@
 ## Thorium
 
 - hide title bar by turning off thorium/setting/appearance/--use system title bar and borders--
+- on wayland it might be necessary to add --ozone-platform=wayland to the  
+  /usr/share/applications/thorium-browser.desktop file on the Exec line.
 
 ### Extensions
 
