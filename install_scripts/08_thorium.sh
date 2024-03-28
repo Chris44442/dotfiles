@@ -8,5 +8,5 @@ rm -rf yay
 yay -Syu
 yay -S thorium-browser-bin
 
-echo "hide title bar by turning off "thorium/setting/appearance/--use system title bar and borders--"
+echo "hide title bar by turning off thorium/setting/appearance/--use system title bar and borders--"
 
