@@ -9,5 +9,5 @@ cp target/fzf-linux_amd64 ~/.local/bin/fzf
 cd ..
 rm -rf fzf
 
-cp ~/HowToDocs/install_scripts/key-bindings.bash ~/.config/key-bindings.bash
+cp ~/HowToDocs/dotfiles/key-bindings.bash ~/.config/key-bindings.bash
 
