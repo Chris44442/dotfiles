@@ -77,3 +77,9 @@ sudo pacman -S wofi
 ```
 
 set $menu wofi --show run
+
+```bash
+sudo pacman -S waybar
+# This may or may not be necessary for the waybar icons:
+# sudo pacman -S ttf-font-awesome
+```
