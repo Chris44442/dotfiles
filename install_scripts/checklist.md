@@ -1,12 +1,13 @@
 ## Thorium
 
+- hide title bar by turning off thorium/setting/appearance/--use system title bar and borders--
+
 ### Extensions
 
 - accept all cookies
 - dark reader
 - sponsorblock for youtube
 - ublock origin
-
 
 ## Git
 
