@@ -53,3 +53,24 @@ yay -S awesome-git
 sudo pacman -S playerctl
 ```
 
+## Sway
+
+```bash
+sudo pacman -S otf-droid-nerd
+```
+
+in sway config add:
+
+font pango: "Droid Sans Mono" Regular 14
+
+set $mod Mod1
+
+
+mod+shift+c to reload config
+
+
+```bash
+sudo pacman -S wofi
+```
+
+set $menu wofi --show run

@@ -1,0 +1,14 @@
+window {
+    font-size: 22px;
+    font-family: "Droid Sans Mono";
+    background-color: rgba(50,50,50,0.9);
+    color: white;
+}
+
+#entry:selected {
+    background-color: #bbccdd;
+}
+
+#text:selected {
+    color: #333333;
+}
