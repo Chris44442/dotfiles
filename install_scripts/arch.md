@@ -32,6 +32,20 @@ git clone https://github.com/Chris44442/HowToDocs.git
 
 Run install scripts from the install_script dir
 
+## Pipewire
+
+Disable the terrible suspend on idle.
+
+```bash
+sudo vim /usr/share/wireplumber/scripts/node/suspend-node.lua
+```
+
+Set timeout to 0.
+
+```lua
+local timeout = 0
+```
+
 ## AwesomeWM
 
 ```bash
