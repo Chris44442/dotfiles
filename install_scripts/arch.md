@@ -83,3 +83,5 @@ sudo pacman -S waybar
 # This may or may not be necessary for the waybar icons:
 # sudo pacman -S ttf-font-awesome
 ```
+
+ttf-roboto-mono for diego sandoval waybar config
