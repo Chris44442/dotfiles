@@ -2,7 +2,7 @@
 
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 
-CARGO_PATH="/home/chris/.cargo/bin"
+CARGO_PATH="~/.cargo/bin"
 
 mkdir -p ~/.config/alacritty/
 cp ~/HowToDocs/dotfiles/alacritty.toml ~/.config/alacritty/alacritty.toml

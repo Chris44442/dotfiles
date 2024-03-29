@@ -1,7 +1,7 @@
 
 #!/bin/bash
 
-CARGO_PATH="/home/chris/.cargo/bin"
+CARGO_PATH="~/.cargo/bin"
 
 $CARGO_PATH/cargo install vhdl_ls
 

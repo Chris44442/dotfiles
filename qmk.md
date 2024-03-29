@@ -23,7 +23,7 @@ qmk new-keymap
 ## Customize Keymap.c
 
 ```bash
-vim /home/chris/qmk_firmware/keyboards/beekeeb/piantor/keymaps/chris44442/keymap.c
+vim ~/qmk_firmware/keyboards/beekeeb/piantor/keymaps/chris44442/keymap.c
 qmk compile
 qmk flash
 ```
