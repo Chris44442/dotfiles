@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Quartus 23.1 lite
+Comment=quartus
+Exec=/home/chris/intelFPGA_lite/23.1std/quartus/bin/quartus
+Icon=/home/chris/intelFPGA_lite/23.1std/quartus/adm/quartusii.png
+Terminal=false
+Type=Application
+StartupNotify=true
+
