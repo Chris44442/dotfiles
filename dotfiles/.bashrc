@@ -24,3 +24,6 @@ export HISTFILESIZE=20000
 export HISTCONTROL=erasedups
 export HISTIGNORE='&:ls:uh:cd:cd ..:exit:clear'
 
+# Fix Quartus Platform Designer issue with Sway
+# https://github.com/swaywm/sway/issues/595
+export _JAVA_AWT_WM_NONREPARENTING=1
