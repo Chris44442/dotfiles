@@ -18,3 +18,9 @@ source ~/.config/key-bindings.bash
 
 export PATH="~/.local/bin:${PATH}"
 
+shopt -s histappend
+export HISTSIZE=20000
+export HISTFILESIZE=20000
+export HISTCONTROL=erasedups
+export HISTIGNORE='&:ls:uh:cd:cd ..:exit:clear'
+
