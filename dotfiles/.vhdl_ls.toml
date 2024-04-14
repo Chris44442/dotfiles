@@ -1,4 +1,12 @@
 [libraries]
-lib1.files = [
-  # '/home/chris/repo/test/stuff.vhd',
+vunit_lib.files = [
+  '/home/chris/.local/lib/python3.11/site-packages/vunit/vhdl/run/src/run_api.vhd',
+  '/home/chris/.local/lib/python3.11/site-packages/vunit/vhdl/run/src/run_types.vhd',
+  '/home/chris/.local/lib/python3.11/site-packages/vunit/vhdl/run/src/run.vhd',
+  '/home/chris/.local/lib/python3.11/site-packages/vunit/vhdl/run/src/runner_pkg.vhd',
+  '/home/chris/.local/lib/python3.11/site-packages/vunit/vhdl/*.vhd',
+  '/home/chris/.local/lib/python3.11/site-packages/vunit/vhdl/check/src/check_api.vhd',
+  '/home/chris/.local/lib/python3.11/site-packages/vunit/vhdl/check/src/check.vhd',
+  '/home/chris/.local/lib/python3.11/site-packages/vunit/vhdl/check/src/checker_pkg.vhd',
+  '/home/chris/.local/lib/python3.11/site-packages/vunit/vhdl/check/src/checker_pkg-body.vhd',
 ]

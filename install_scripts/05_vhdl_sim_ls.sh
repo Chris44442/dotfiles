@@ -13,3 +13,5 @@ make
 sudo make install
 rm -rf ~/HowToDocs/install_scripts/nvc
 
+cargo install --git https://gitlab.com/surfer-project/surfer surfer
+
