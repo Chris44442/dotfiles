@@ -90,17 +90,32 @@ ttf-roboto-mono for diego sandoval waybar config
 # Lunarvim Backup
 
 ```bash
-# wget -P ~/.local https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz
-# cd ~/.local/
-# tar xzvf nvim-linux64.tar.gz
-# rm nvim-linux64.tar.gz
-# cd
-# echo "export PATH=\"~/.local/nvim-linux64/bin:\${PATH}\"" >> ~/.bashrc
+wget -P ~/.local https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz
+cd ~/.local/
+tar xzvf nvim-linux64.tar.gz
+rm nvim-linux64.tar.gz
+cd
+echo "export PATH=\"~/.local/nvim-linux64/bin:\${PATH}\"" >> ~/.bashrc
 
-# LUNARVIM_PATH="~/HowToDocs/install_scripts/lvim"
-# LUNARVIM_PATH_DEST="~/.local/share/lunarvim"
-# mkdir -p $LUNARVIM_PATH_DEST
-# cp -r $LUNARVIM_PATH $LUNARVIM_PATH_DEST
-# mv $LUNARVIM_PATH_DEST/lvim/lvim/lvim ~/.local/bin
-# mv $LUNARVIM_PATH_DEST/lvim/lvim ~/.config/
+LUNARVIM_PATH="~/HowToDocs/install_scripts/lvim"
+LUNARVIM_PATH_DEST="~/.local/share/lunarvim"
+mkdir -p $LUNARVIM_PATH_DEST
+cp -r $LUNARVIM_PATH $LUNARVIM_PATH_DEST
+mv $LUNARVIM_PATH_DEST/lvim/lvim/lvim ~/.local/bin
+mv $LUNARVIM_PATH_DEST/lvim/lvim ~/.config/
+```
+
+```bash
+CARGO_PATH="~/.cargo/bin"
+
+$CARGO_PATH/cargo install vhdl_ls
+
+cd $CARGO_PATH/..
+mkdir tmp
+cd tmp
+git clone https://github.com/VHDL-LS/rust_hdl.git
+cp -rf rust_hdl/vhdl_libraries ..
+cd ..
+rm -rf tmp
+cp ~/HowToDocs/dotfiles/.vhdl_ls.toml ~/.vhdl_ls.toml
 ```
