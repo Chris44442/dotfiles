@@ -18,11 +18,11 @@ extra packages:
 - base-devel
 - docker
 - tmux
-- xclip
 - bash-completion
 - go
 - neovim
 - lazygit
+- wl-clipboard (xclip?)
 
 ## Clone Repo with install scripts
 
