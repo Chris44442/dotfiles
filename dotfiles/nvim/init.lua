@@ -70,7 +70,7 @@ vim.api.nvim_set_keymap("", "<PageDown>", "<Nop>", { noremap = true, silent = tr
 
 -- try these for a bit, not optimal but w/e
 vim.api.nvim_set_keymap("n", "k", "q", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "q", ":q!<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "q", ":q<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "j", ":w<CR>", { noremap = true, silent = true })
 
 -- Highlight when yanking (copying) text
