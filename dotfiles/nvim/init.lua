@@ -421,6 +421,7 @@ require("lazy").setup({
   {
     "folke/tokyonight.nvim",
     priority = 1000,
+
     init = function()
       vim.cmd.colorscheme("tokyonight-night")
       vim.cmd.hi("Comment gui=none")
@@ -457,7 +458,7 @@ require("lazy").setup({
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     opts = {
-      ensure_installed = { "bash", "c", "diff", "html", "lua", "luadoc", "markdown", "vim", "vimdoc" },
+      ensure_installed = { "bash", "c", "rust", "diff", "html", "lua", "luadoc", "markdown", "vim", "vimdoc" },
       auto_install = true,
       highlight = {
         enable = true,
@@ -519,3 +520,106 @@ vim.api.nvim_set_keymap('', '<C-w>', ":lua require('harpoon.ui').nav_file(6)<CR>
 vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {command = "highlight! HarpoonInactive guibg=#NONE guifg=#999999" })
 vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {command = "highlight! HarpoonNumberInactive guibg=#NONE guifg=#999999" })
 
+local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
+
+parser_config.vhdl = {
+  install_info = {
+    url = "https://github.com/jpt13653903/tree-sitter-vhdl.git",
+    files = { 'src/parser.c' },
+    branch = 'main',
+    generate_requires_npm = false, -- if stand-alone parser without npm dependencies
+    requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
+  },
+  filetype = 'vhdl', -- if filetype does not match the parser name
+}
+-- parser_config.hungarian = {
+--   install_info = {
+--     url = "https://github.com/jpt13653903/tree-sitter-hungarian.git",
+--     files = { 'src/parser.c' },
+--     branch = 'master',
+--     generate_requires_npm = false, -- if stand-alone parser without npm dependencies
+--     requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
+--   },
+--   filetype = 'hungarian', -- if filetype does not match the parser name
+-- }
+
+local treesitter = require('nvim-treesitter.configs')
+
+treesitter.setup {
+  ensure_installed = {
+    'arduino',
+    'bash',
+    'bibtex',
+    'c',
+    'c_sharp',
+    'cpp',
+    'css',
+    'csv',
+    'cuda',
+    'devicetree',
+    'diff',
+    'ebnf',
+    'git_config',
+    'git_rebase',
+    'gitattributes',
+    'gitcommit',
+    'gitignore',
+    'glsl',
+    'hlsl',
+    'html',
+    'htmldjango',
+    'http',
+    'hungarian',
+    'ini',
+    'javascript',
+    'json',
+    'json5',
+    'jsonc',
+    -- 'latex',
+    'lua',
+    'luadoc',
+    'make',
+    'markdown',
+    'matlab',
+    -- 'mermaid',
+    'objdump',
+    -- 'passwd',
+    'python',
+    -- 'ssh_config',
+    'toml',
+    'verilog',
+    'vhdl',
+    -- 'vim',
+    -- 'vimdoc',
+    -- 'xml',
+    'yaml',
+  },
+
+  sync_install = false,
+  auto_install = true,
+
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+}
+
+-- Function to override Tree-sitter highlights
+local function set_treesitter_highlights()
+    -- Get the colors from the tokyonight colorscheme
+    local colors = require('tokyonight.colors').setup()
+
+    -- Set comments to a specific green color from the tokyonight palette
+    vim.api.nvim_set_hl(0, '@Attribute', { fg = colors.yellow })
+    vim.api.nvim_set_hl(0, '@Type', { fg = colors.blue })
+    vim.api.nvim_set_hl(0, '@Function', { fg = colors.yellow })
+    vim.api.nvim_set_hl(0, '@Function.builtin', { fg = colors.yellow })
+    vim.api.nvim_set_hl(0, '@Number', { fg = colors.red })
+    vim.api.nvim_set_hl(0, '@Number.Float', { fg = colors.red })
+    vim.api.nvim_set_hl(0, '@Operator', { fg = colors.white })
+    vim.api.nvim_set_hl(0, '@Keyword.Operator', { fg = colors.blue })
+    -- Add other highlight overrides here
+end
+
+-- Call the function to set the highlights
+set_treesitter_highlights()
