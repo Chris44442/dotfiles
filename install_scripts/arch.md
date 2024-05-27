@@ -23,6 +23,7 @@ extra packages:
 - neovim
 - lazygit
 - wl-clipboard (xclip?)
+- otf-droid-nerd
 
 ## Clone Repo with install scripts
 
