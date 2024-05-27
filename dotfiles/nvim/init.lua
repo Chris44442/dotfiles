@@ -60,8 +60,8 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "🔭󰭎 Show diagnostic [E]rror messages" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "📅 Open diagnostic [Q]uickfix list" })
 
 vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
@@ -91,8 +91,38 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 
-  {"smoka7/hop.nvim"},
-  {"ThePrimeagen/harpoon"},
+  {"smoka7/hop.nvim",
+    config = function()
+      require'hop'.setup { keys = 'uhetpgcasrkmidxbon'}
+      local hop = require('hop')
+      local directions = require('hop.hint').HintDirection
+      vim.keymap.set('', 'f', function()
+        hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = false })
+      end, {remap=true})
+      vim.keymap.set('', 't', function()
+        hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = false })
+      end, {remap=true})
+    end,
+  },
+
+  {"ThePrimeagen/harpoon",
+    config = function()
+      vim.api.nvim_set_keymap('', '<leader>h', "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", {noremap=true, silent=true})
+      vim.api.nvim_set_keymap('', '<leader>t', "<cmd>lua require('harpoon.mark').add_file()<CR>", {noremap=true, silent=true})
+      require'harpoon'.setup {tabline = true}
+      vim.api.nvim_set_keymap('', '<C-h>', ":lua require('harpoon.ui').nav_file(1)<CR>", {noremap=true, silent=true})
+      vim.api.nvim_set_keymap('', '<C-t>', ":lua require('harpoon.ui').nav_file(2)<CR>", {noremap=true, silent=true})
+      vim.api.nvim_set_keymap('', '<C-n>', ":lua require('harpoon.ui').nav_file(3)<CR>", {noremap=true, silent=true})
+      vim.api.nvim_set_keymap('', '<C-s>', ":lua require('harpoon.ui').nav_file(4)<CR>", {noremap=true, silent=true})
+      vim.api.nvim_set_keymap('', '<C-m>', ":lua require('harpoon.ui').nav_file(5)<CR>", {noremap=true, silent=true})
+      vim.api.nvim_set_keymap('', '<C-w>', ":lua require('harpoon.ui').nav_file(6)<CR>", {noremap=true, silent=true})
+      vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {command = "highlight! HarpoonInactive guibg=#NONE guifg=#999999" })
+      vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {command = "highlight! HarpoonNumberInactive guibg=#NONE guifg=#999999" })
+      vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {command = "highlight! HarpoonActive guibg=#414868" })
+      vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {command = "highlight! HarpoonNumberActive guibg=#414868" })
+    end,
+  },
+
   {"kdheepak/lazygit.nvim",
   -- lazygit was not found on path, had to put it in .cargo/bin/ as a workaround
   cmd = {
@@ -103,18 +133,11 @@ require("lazy").setup({
     "LazyGitFilterCurrentFile",
   },
   -- optional for floating window border decoration
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-  },
-  keys = {
-    { "<leader>g", "<cmd>LazyGit<cr>", desc = "LazyGit" }
-  }
+  dependencies = { "nvim-lua/plenary.nvim", },
+  keys = {{ "<leader>g", "<cmd>LazyGit<cr>", desc = "LazyGit" }}
   },
 
-  { "numToStr/Comment.nvim", opts = {} },
-
-  {
-    "lewis6991/gitsigns.nvim",
+  {"lewis6991/gitsigns.nvim",
     opts = {
       signs = {
         add = { text = "+" },
@@ -125,8 +148,8 @@ require("lazy").setup({
       },
     },
   },
-  {
-    "folke/which-key.nvim",
+
+  {"folke/which-key.nvim",
     event = "VimEnter",
     config = function() -- This is the function that runs, AFTER loading
       require("which-key").setup()
@@ -143,8 +166,8 @@ require("lazy").setup({
       }, { mode = "v" })
     end,
   },
-  {
-    "nvim-telescope/telescope.nvim",
+
+  {"nvim-telescope/telescope.nvim",
     event = "VimEnter",
     branch = "0.1.x",
     dependencies = {
@@ -204,8 +227,7 @@ require("lazy").setup({
     end,
   },
 
-  {
-    "neovim/nvim-lspconfig",
+  {"neovim/nvim-lspconfig",
     dependencies = {
       { "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
       "williamboman/mason-lspconfig.nvim",
@@ -287,6 +309,9 @@ require("lazy").setup({
               },
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
               -- diagnostics = { disable = { 'missing-fields' } },
+              diagnostics = {
+                globals = {'vim'},
+              }
             },
           },
         },
@@ -313,8 +338,7 @@ require("lazy").setup({
     end,
   },
 
-  {
-    "hrsh7th/nvim-cmp",
+  {"hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
       {
@@ -353,22 +377,14 @@ require("lazy").setup({
       local t = luasnip.text_node
       local i = luasnip.insert_node
       luasnip.add_snippets("vhdl", {
-
-      s("if", { t({"if reset then","  "}), i(0), t({"","end if;"}) }),
-      s("others", { t("(others => '0')") }),
-      s("for", { t({"for i in 0 to 15 loop", "  "}) , i(0), t({"","end loop;"}) }),
-      s("case", { t({"case "}), i(0,"var"), t({" is", "  when cond1 =>", "  when others =>", "end case;"})}),
-
-      s("ieee", { t({"library ieee;", "use ieee.std_logic_1164.all;", "use ieee.numeric_std.all;", ""})}),
-      s("entity", { t({"entity top is port(", "  clk : in  std_logic;" , "  adr : out std_logic_vector(31 downto 0)" ,");", "end entity;", ""}) }),
-      s("architecture", { t({"architecture rtl of top is", "  signal clk : std_logic;" , "begin" ,"", "end architecture;", ""}) }),
-      -- s("process", { t({"process(all) begin", "  if rising_edge(clk) then", "  ", "  end if;", "end process;"}) }),
-      s("process", { t({"process(all) begin", "  if rising_edge(clk) then", "    "}), i(0,""), t({"","  end if;", "end process;"}) }),
-
-      s("std_logic_vector", { t({"std_logic_vector("}), i(0,"31"), t({" downto 0)"})}),
-      s("unsigned", { t({"unsigned("}), i(0,"31"), t({" downto 0)"})}),
-      s("integer", { t({"integer range 0 to "}), i(0,"255")}),
-
+        s("if", { t({"if reset then","  "}), i(0), t({"","end if;"}) }),
+        s("others", { t("(others => '0')") }),
+        s("for", { t({"for i in 0 to 15 loop", "  "}) , i(0), t({"","end loop;"}) }),
+        s("case", { t({"case "}), i(0,"var"), t({" is", "  when cond1 =>", "  when others =>", "end case;"})}),
+        s("process", { t({"process(all) begin", "  if rising_edge(clk) then", "    "}), i(0,""), t({"","  end if;", "end process;"}) }),
+        s("std_logic_vector", { t({"std_logic_vector("}), i(0,"31"), t({" downto 0);"})}),
+        s("unsigned", { t({"unsigned("}), i(0,"31"), t({" downto 0);"})}),
+        s("integer", { t({"integer range 0 to "}), i(0,"255"), t({";"})}),
       })
 
       cmp.setup({
@@ -418,10 +434,8 @@ require("lazy").setup({
     end,
   },
 
-  {
-    "folke/tokyonight.nvim",
+  {"folke/tokyonight.nvim",
     priority = 1000,
-
     init = function()
       vim.cmd.colorscheme("tokyonight-night")
       vim.cmd.hi("Comment gui=none")
@@ -454,11 +468,11 @@ require("lazy").setup({
       end
     end,
   },
-  {
-    "nvim-treesitter/nvim-treesitter",
+
+  {"nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     opts = {
-      ensure_installed = { "bash", "c", "rust", "diff", "html", "lua", "luadoc", "markdown", "vim", "vimdoc" },
+      -- ensure_installed = { "bash", "c", "rust", "diff", "html", "lua", "luadoc", "markdown", "vim", "vimdoc" },
       auto_install = true,
       highlight = {
         enable = true,
@@ -470,156 +484,31 @@ require("lazy").setup({
       indent = { enable = true, disable = { "ruby" } },
     },
     config = function(_, opts)
+      local colors = require('tokyonight.colors').setup()
+      vim.api.nvim_set_hl(0, '@Attribute', { fg = colors.yellow })
+      vim.api.nvim_set_hl(0, '@Type', { fg = colors.blue })
+      vim.api.nvim_set_hl(0, '@Function', { fg = colors.yellow })
+      vim.api.nvim_set_hl(0, '@Function.builtin', { fg = colors.yellow })
+      vim.api.nvim_set_hl(0, '@Number', { fg = colors.red })
+      vim.api.nvim_set_hl(0, '@Number.Float', { fg = colors.red })
+      vim.api.nvim_set_hl(0, '@Operator', { fg = colors.white })
+      vim.api.nvim_set_hl(0, '@Keyword.Operator', { fg = colors.blue })
+
       -- Prefer git instead of curl in order to improve connectivity in some environments
       require("nvim-treesitter.install").prefer_git = true
       ---@diagnostic disable-next-line: missing-fields
       require("nvim-treesitter.configs").setup(opts)
+      require('nvim-treesitter.parsers').get_parser_configs().vhdl = {
+        install_info = {
+          url = "https://github.com/jpt13653903/tree-sitter-vhdl.git",
+          files = { 'src/parser.c' },
+          branch = 'main',
+          generate_requires_npm = false, -- if stand-alone parser without npm dependencies
+          requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
+        },
+        filetype = 'vhdl',
+      }
     end,
-  },
-}, {
-  ui = {
-    icons = vim.g.have_nerd_font and {} or {
-      cmd = "⌘",
-      config = "🛠",
-      event = "📅",
-      ft = "📂",
-      init = "⚙",
-      keys = "🗝",
-      plugin = "🔌",
-      runtime = "💻",
-      require = "🌙",
-      source = "📄",
-      start = "🚀",
-      task = "📌",
-      lazy = "💤 ",
-    },
   },
 })
 
--- hop
-require'hop'.setup { keys = 'uhetpgcasrkmidxbon'}
-local hop = require('hop')
-local directions = require('hop.hint').HintDirection
-vim.keymap.set('', 'f', function()
-  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = false })
-end, {remap=true})
-vim.keymap.set('', 't', function()
-  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = false })
-end, {remap=true})
-
--- harpoon
-vim.api.nvim_set_keymap('', '<leader>h', "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", {noremap=true, silent=true})
-vim.api.nvim_set_keymap('', '<leader>t', "<cmd>lua require('harpoon.mark').add_file()<CR>", {noremap=true, silent=true})
-require'harpoon'.setup {tabline = true}
-vim.api.nvim_set_keymap('', '<C-h>', ":lua require('harpoon.ui').nav_file(1)<CR>", {noremap=true, silent=true})
-vim.api.nvim_set_keymap('', '<C-t>', ":lua require('harpoon.ui').nav_file(2)<CR>", {noremap=true, silent=true})
-vim.api.nvim_set_keymap('', '<C-n>', ":lua require('harpoon.ui').nav_file(3)<CR>", {noremap=true, silent=true})
-vim.api.nvim_set_keymap('', '<C-s>', ":lua require('harpoon.ui').nav_file(4)<CR>", {noremap=true, silent=true})
-vim.api.nvim_set_keymap('', '<C-m>', ":lua require('harpoon.ui').nav_file(5)<CR>", {noremap=true, silent=true})
-vim.api.nvim_set_keymap('', '<C-w>', ":lua require('harpoon.ui').nav_file(6)<CR>", {noremap=true, silent=true})
-vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {command = "highlight! HarpoonInactive guibg=#NONE guifg=#999999" })
-vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {command = "highlight! HarpoonNumberInactive guibg=#NONE guifg=#999999" })
-
-local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-
-parser_config.vhdl = {
-  install_info = {
-    url = "https://github.com/jpt13653903/tree-sitter-vhdl.git",
-    files = { 'src/parser.c' },
-    branch = 'main',
-    generate_requires_npm = false, -- if stand-alone parser without npm dependencies
-    requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
-  },
-  filetype = 'vhdl', -- if filetype does not match the parser name
-}
--- parser_config.hungarian = {
---   install_info = {
---     url = "https://github.com/jpt13653903/tree-sitter-hungarian.git",
---     files = { 'src/parser.c' },
---     branch = 'master',
---     generate_requires_npm = false, -- if stand-alone parser without npm dependencies
---     requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
---   },
---   filetype = 'hungarian', -- if filetype does not match the parser name
--- }
-
-local treesitter = require('nvim-treesitter.configs')
-
-treesitter.setup {
-  ensure_installed = {
-    'arduino',
-    'bash',
-    'bibtex',
-    'c',
-    'c_sharp',
-    'cpp',
-    'css',
-    'csv',
-    'cuda',
-    'devicetree',
-    'diff',
-    'ebnf',
-    'git_config',
-    'git_rebase',
-    'gitattributes',
-    'gitcommit',
-    'gitignore',
-    'glsl',
-    'hlsl',
-    'html',
-    'htmldjango',
-    'http',
-    'hungarian',
-    'ini',
-    'javascript',
-    'json',
-    'json5',
-    'jsonc',
-    -- 'latex',
-    'lua',
-    'luadoc',
-    'make',
-    'markdown',
-    'matlab',
-    -- 'mermaid',
-    'objdump',
-    -- 'passwd',
-    'python',
-    -- 'ssh_config',
-    'toml',
-    'verilog',
-    'vhdl',
-    -- 'vim',
-    -- 'vimdoc',
-    -- 'xml',
-    'yaml',
-  },
-
-  sync_install = false,
-  auto_install = true,
-
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-}
-
--- Function to override Tree-sitter highlights
-local function set_treesitter_highlights()
-    -- Get the colors from the tokyonight colorscheme
-    local colors = require('tokyonight.colors').setup()
-
-    -- Set comments to a specific green color from the tokyonight palette
-    vim.api.nvim_set_hl(0, '@Attribute', { fg = colors.yellow })
-    vim.api.nvim_set_hl(0, '@Type', { fg = colors.blue })
-    vim.api.nvim_set_hl(0, '@Function', { fg = colors.yellow })
-    vim.api.nvim_set_hl(0, '@Function.builtin', { fg = colors.yellow })
-    vim.api.nvim_set_hl(0, '@Number', { fg = colors.red })
-    vim.api.nvim_set_hl(0, '@Number.Float', { fg = colors.red })
-    vim.api.nvim_set_hl(0, '@Operator', { fg = colors.white })
-    vim.api.nvim_set_hl(0, '@Keyword.Operator', { fg = colors.blue })
-    -- Add other highlight overrides here
-end
-
--- Call the function to set the highlights
-set_treesitter_highlights()
