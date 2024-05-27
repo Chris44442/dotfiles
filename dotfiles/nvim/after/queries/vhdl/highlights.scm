@@ -1,75 +1,14 @@
 [
-  "alias"
-  "package"
-  "file"
-  "entity"
-  "architecture"
-  "type"
-  "subtype"
-  "attribute"
-  "to"
-  "downto"
-  "signal"
-  "variable"
-  "record"
-  "array"
-  "others"
-  "process"
-  "component"
-  "shared"
-  "constant"
-  "port"
-  "generic"
-  "generate"
-  "range"
-  "map"
-  "in"
-  "inout"
-  "of"
-  "out"
-  "configuration"
-  "pure"
-  "impure"
-  "is"
-  "begin"
-  "end"
-  "context"
-  "wait"
-  "until"
-  "after"
-  "report"
-  "open"
-  "exit"
-  "assert"
-  "next"
-  "null"
-  "force"
-  "property"
-  "release"
-  "sequence"
-  "transport"
-  "unaffected"
-  "select"
-  "severity"
-  "register"
-  "reject"
-  "postponed"
-  "on"
-  "new"
-  "literal"
-  "linkage"
-  "inertial"
-  "guarded"
-  "group"
-  "disconnect"
-  "bus"
-  "buffer"
-  "body"
-  "all"
-  "block"
-  "access"
-  "library"
-  "use"
+  "alias" "package" "file" "entity" "architecture" "type" "subtype"
+  "attribute" "to" "downto" "signal" "variable" "record" "array"
+  "others" "process" "component" "shared" "constant" "port" "generic"
+  "generate" "range" "map" "in" "inout" "of" "out" "configuration"
+  "pure" "impure" "is" "begin" "end" "context" "wait" "until" "after"
+  "report" "open" "exit" "assert" "next" "null" "force" "property"
+  "release" "sequence" "transport" "unaffected" "select" "severity"
+  "register" "reject" "postponed" "on" "new" "literal" "linkage"
+  "inertial" "guarded" "group" "disconnect" "bus" "buffer" "body"
+  "all" "block" "access"
 ] @keyword
 
 [
@@ -88,6 +27,10 @@
   "if" "elsif" "else" "case" "then" "when"
 ] @keyword.conditional
 
+[ 
+  "library" "use"
+] @keyword.include
+
 (comment) @comment @spell
 
 (type_mark) @type
@@ -103,7 +46,7 @@
 [
   "=>" "<=" "+" ":=" "=" "/=" "<" ">" "-" "*"
   "**" "/" "?>" "?<" "?<=" "?>=" "?=" "?/="
-; "?/" didn't work, may due to escape character
+; "?/" errors, maybe due to escape character
   (attribute_name "'")
   (index_subtype_definition (any))
 ] @operator
@@ -114,11 +57,17 @@
   (index_subtype_definition (any))
 ] @keyword.operator
 
-(real_decimal) @number
-(integer_decimal) @number
+[
+  (real_decimal)
+  (integer_decimal)
+] @number
+
 (character_literal) @character
-(string_literal) @string
-(bit_string_literal) @string
+
+[
+  (string_literal)
+  (bit_string_literal)
+] @string
 
 (physical_literal
   unit: (simple_name) @attribute)
@@ -134,8 +83,17 @@
   (simple_name) @constant.builtin (#any-of? @constant.builtin
     "note" "warning" "error" "failure"))
 
-(procedure_call_statement
-  procedure: (simple_name) @function)
+;(procedure_call_statement
+;  procedure: (selected_name
+;    prefix: (selected_name
+;      prefix: (simple_name)
+;      suffix: (simple_name))
+;    suffix: (simple_name))) @function
+
+(procedure_call_statement) @function
+
+;(procedure_call_statement
+;  procedure: (_) @function)
 
 (ambiguous_name
   prefix: (simple_name) @function.builtin (#any-of? @function.builtin
@@ -160,8 +118,4 @@
     "conj" "arg" "polar_to_complex" "complex_to_polar"
     "get_principal_value" "cmplx"
 ))
-
-(ambiguous_name
-    prefix: (simple_name) @function.builtin (#match? @function.builtin
-        "^\(std_logic\(_vector\)\?\|real\|\(to_\)\?\(\(\(un\)\?signed\)\|integer\)\)$"))
 
