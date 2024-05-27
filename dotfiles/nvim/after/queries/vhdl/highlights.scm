@@ -79,21 +79,9 @@
 ((simple_name) @variable.builtin (#any-of? @variable.builtin
   "true" "false" "now"))
 
-(severity_expression
-  (simple_name) @constant.builtin (#any-of? @constant.builtin
-    "note" "warning" "error" "failure"))
-
-;(procedure_call_statement
-;  procedure: (selected_name
-;    prefix: (selected_name
-;      prefix: (simple_name)
-;      suffix: (simple_name))
-;    suffix: (simple_name))) @function
+(severity_expression) @constant.builtin
 
 (procedure_call_statement) @function
-
-;(procedure_call_statement
-;  procedure: (_) @function)
 
 (ambiguous_name
   prefix: (simple_name) @function.builtin (#any-of? @function.builtin
