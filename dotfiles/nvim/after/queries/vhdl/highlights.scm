@@ -81,7 +81,8 @@
 
 (severity_expression) @constant.builtin
 
-(procedure_call_statement) @function
+(procedure_call_statement
+  procedure: (simple_name) @function)
 
 (ambiguous_name
   prefix: (simple_name) @function.builtin (#any-of? @function.builtin
