@@ -195,35 +195,34 @@ require("lazy").setup({
       pcall(require("telescope").load_extension, "ui-select")
 
       local builtin = require("telescope.builtin")
-      vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
-      vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-      vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
-      vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "[S]earch [F]iles" })
-      vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
-      vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
-      vim.keymap.set("n", "<leader>st", builtin.live_grep, { desc = "[S]earch by [G]rep" })
-      vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-      vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
-      vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+      vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "🔭 Help" })
+      vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "🔭 Keymaps" })
+      vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "🔭 Files" })
+      -- vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
+      vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "🔭 Word" })
+      vim.keymap.set("n", "<leader>st", builtin.live_grep, { desc = "🔭 Grep Workspace" })
+      vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "🔭 Diagnostics" })
+      vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "🔭 Resume" })
+      vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '🔭 Recent' })
+      vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "🔭 Buffers" })
 
       vim.keymap.set("n", "<leader>a", function()
         builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
           winblend = 10,
           previewer = false,
         }))
-      end, { desc = "[a] Fuzzily search in current buffer" })
+      end, { desc = "🔭 Current Buffer" })
 
       vim.keymap.set("n", "<leader>s/", function()
         builtin.live_grep({
           grep_open_files = true,
           prompt_title = "Live Grep in Open Files",
         })
-      end, { desc = "[S]earch [/] in Open Files" })
+      end, { desc = "🔭 Grep Open Files" })
 
       vim.keymap.set("n", "<leader>sn", function()
         builtin.find_files({ cwd = vim.fn.stdpath("config") })
-      end, { desc = "[S]earch [N]eovim files" })
+      end, { desc = "🔭 Config" })
     end,
   },
 
@@ -493,6 +492,8 @@ require("lazy").setup({
       vim.api.nvim_set_hl(0, '@Number.Float', { fg = colors.red })
       vim.api.nvim_set_hl(0, '@Operator', { fg = colors.white })
       vim.api.nvim_set_hl(0, '@Keyword.Operator', { fg = colors.blue })
+      vim.api.nvim_set_hl(0, '@Keyword.Conditional', { fg = colors.purple })
+      vim.api.nvim_set_hl(0, '@Keyword.Repeat', { fg = colors.purple })
 
       -- Prefer git instead of curl in order to improve connectivity in some environments
       require("nvim-treesitter.install").prefer_git = true
@@ -500,7 +501,7 @@ require("lazy").setup({
       require("nvim-treesitter.configs").setup(opts)
       require('nvim-treesitter.parsers').get_parser_configs().vhdl = {
         install_info = {
-          url = "https://github.com/jpt13653903/tree-sitter-vhdl.git",
+          url = "https://github.com/alemuller/tree-sitter-vhdl.git",
           files = { 'src/parser.c' },
           branch = 'main',
           generate_requires_npm = false, -- if stand-alone parser without npm dependencies
