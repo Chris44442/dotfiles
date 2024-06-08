@@ -13,7 +13,5 @@ mkdir build && cd build
 ../configure
 make
 sudo make install
-rm -rf $home1/HowToDocs/install_scripts/nvc
-
-cargo install --git https://gitlab.com/surfer-project/surfer surfer
+rm -rf $home1/repo/dotfiles/install_scripts/nvc
 
