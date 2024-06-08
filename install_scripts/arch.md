@@ -54,11 +54,12 @@ local timeout = 0
 
 before archinstall:
 
+```bash
 export http_proxy=http://1x.xx.xxx.xx:xxx8
 export https_proxy=http://1x.xx.xxx.xx:xxx8
 export ftp_proxy=http://1x.xx.xxx.xx:xxx8
 export socks_proxy=http://1x.xx.xxx.xx:xxx9
-
+```
 
 then if reflector hangs:
 
@@ -71,12 +72,12 @@ in /etc/wgetrc enable proxy and set http_proxy and https_proxy like above
 in /etc/pacman.conf set XferCommand = /usr/bin/wget -c -O %o %u
 in /etc/pacman.d/mirrorlist disable all mirrors except worldwide and germany
 
-pacman -S openssh
-copy privat ssh key from another pc to ~/.ssh and chmod 600 it.
-sudo systemctl enable sshd.service
+pacman -S openssh  
+copy privat ssh key from another pc to ~/.ssh and chmod 600 it.  
+sudo systemctl enable sshd.service  
 
-pacman -S samba
-cp /etc/samba/smb.conf from another pc
+pacman -S samba  
+cp /etc/samba/smb.conf from another pc  
 sudo systemctl enable smb.service
 
 tms config to set directories. Otherwise some versions of tms might error.
@@ -92,3 +93,12 @@ change login screen
 shortcut for virtual desktop, alt + f1 etc  
 ctrl alt t shortcut to alacritty  
 
+# quartus
+
+sudo cp ~/HowToDocs/install_scripts/quartus/libcrypt.so.1 /lib/libcrypt.so.1
+
+for xserver for quartus on wayland do:
+
+sudo pacman -S xorg-xwayland
+
+install multilib for 32 bit libraries that quartus need
