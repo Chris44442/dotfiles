@@ -1,5 +1,7 @@
 #!/bin/bash
 
+home1=/home/chris
+
 pip3 install vunit_hdl --break-system-packages
 pip3 install corsair --break-system-packages
 
@@ -11,7 +13,7 @@ mkdir build && cd build
 ../configure
 make
 sudo make install
-rm -rf ~/HowToDocs/install_scripts/nvc
+rm -rf $home1/HowToDocs/install_scripts/nvc
 
 cargo install --git https://gitlab.com/surfer-project/surfer surfer
 

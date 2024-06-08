@@ -1,12 +1,14 @@
 #!/bin/bash
 
-cp ~/HowToDocs/dotfiles/.tmux.conf ~/.tmux.conf
-mkdir -p ~/.config/tms
-cp ~/HowToDocs/dotfiles/tms/config.toml ~/.config/tms/config.toml
+home1=/home/chris
+
+cp $home1/HowToDocs/dotfiles/.tmux.conf $home1/.tmux.conf
+mkdir -p $home1/.config/tms
+cp $home1/HowToDocs/dotfiles/tms/config.toml $home1/.config/tms/config.toml
 
 
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm $home1/.tmux/plugins/tpm
 
-cd ~/.tmux/plugins/tpm/scripts/
+cd $home1/.tmux/plugins/tpm/scripts/
 ./install_plugins.sh
 
