@@ -154,3 +154,16 @@ cp /etc/samba/smb.conf from another pc
 sudo systemctl enable smb.service
 
 tms config to set directories. Otherwise some versions of tms might error.
+
+
+# kde
+
+lookandfeeltool -a org.kde.breezedark.desktop
+
+change colors to breezedark  
+change icons manually, e.g. buuf or candy  
+change window decoration to plastik  
+change login screen  
+shortcut for virtual desktop, alt + f1 etc  
+ctrl alt t shortcut to alacritty  
+
