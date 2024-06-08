@@ -1,3 +1,14 @@
+# Win11
+
+- Install Win11 with "World" region setting to avoid garbage apps
+- Run Chris Titus Tweaks, see youtube video
+- download and install nvcleanstall, run it for a clean gpu driver installation
+
+- install browser, steam, hwinfo, cpuz, neovim via choco in powershell, thunderbird, discord
+- profiles: trackir, streamdeck, tarkov, dcs
+
+# Win10
+
 # Windows 10
 
 ## Edge Dark Mode
@@ -33,13 +44,4 @@ sudo apt install dos2unix
 sudo apt install make
 sudo apt install build-essential
 ```
-
-## VS Code
-
-disable: Editor: Use Tab Stops Inserting and deleting whitespace follows tab stops
-
-## SVN CLI partial checkout
-
-svn checkout --depth empty https://neptun.ngr.de.ebs.corp/svn/trxs/RAP-SW/FPGA/FRP_C_S10/trunk/  
-svn update --set-depth infinity trunk/Sources
 

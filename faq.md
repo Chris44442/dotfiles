@@ -1,5 +1,3 @@
-
-
 # GIT
 
 To access bitbucket repos with your public ssh key on it, copy your privat ssh key into:
@@ -110,4 +108,9 @@ Password: <your password>
 ```
 
 In the address bar of Windows File Explorer type `\\10.78.245.131`. You should now see the shared folder.
+
+# SVN CLI partial checkout
+
+svn checkout --depth empty https://neptun.ngr.de.ebs.corp/svn/trxs/RAP-SW/FPGA/FRP_C_S10/trunk/  
+svn update --set-depth infinity trunk/Sources
 
