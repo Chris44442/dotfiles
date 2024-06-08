@@ -9,7 +9,6 @@ CARGO_PATH="$home1/.cargo/bin"
 mkdir -p $home1/.config/alacritty/
 cp $home1/repo/dotfiles/dotfiles/alacritty.toml $home1/.config/alacritty/alacritty.toml
 $CARGO_PATH/cargo install alacritty
-$CARGO_PATH/cargo install bat
 $CARGO_PATH/cargo install fd-find
 $CARGO_PATH/cargo install eza
 $CARGO_PATH/cargo install ripgrep
