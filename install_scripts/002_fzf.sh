@@ -1,6 +1,6 @@
 #!/bin/bash
 
-home1=/home/chris
+home1=~
 
 cd
 git clone https://github.com/junegunn/fzf.git

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-home1=/home/chris
+home1=~
 
 cp $home1/HowToDocs/dotfiles/.tmux.conf $home1/.tmux.conf
 mkdir -p $home1/.config/tms

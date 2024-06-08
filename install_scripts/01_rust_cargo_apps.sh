@@ -1,6 +1,6 @@
 #!/bin/bash
 
-home1=/home/chris
+home1=~
 
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 
