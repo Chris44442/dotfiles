@@ -383,3 +383,18 @@ export LM_LICENSE_FILE=foobar
 ~/intelFPGA_pro/24.2/quartus/dspba/dsp_builder.sh
 ```
 
+
+# Arm Linker
+
+download e.g. ```armv7-eabihf--glibc--stable-2024.02-1``` from [bootlin toolchains](https://toolchains.bootlin.com/downloads/releases/toolchains/armv7-eabihf/tarballs/)
+
+configure the .cargo/config.toml like so:
+
+```toml
+[build]
+target = "arm-unknown-linux-gnueabihf"
+
+[target.arm-unknown-linux-gnueabihf]
+linker = "/home/chris/repo/cyclone5_soc_fpga_config_tool/armv7-eabihf--glibc--stable-2024.02-1/bin/arm-buildroot-linux-gnueabihf-gcc"
+```
+
