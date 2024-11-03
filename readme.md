@@ -21,6 +21,28 @@ Restarting the ssh service may or may not be necessary:
 sudo service ssh restart
 ```
 
+# SSH without password and with proxyjump
+
+from local machine copy keys to host1 with: ssh-copy-id 123.456.1.2
+then go to host1 with: ssh user123@123.456.1.2
+it should be possible without password
+on host1 copy keys to host2 with: ssh-copy-id 192.168.0.42
+then go to host2 with: ssh root@192.168.0.42
+again it shoud be possible without password
+
+now on local machine type in ~/.ssh/config:
+
+Host remoteserver
+  HostName 192.168.0.42
+  User root
+  IdentityFile ~/.ssh/id_ed25519
+  Port 22
+
+ - sample for ProxyJump
+  ProxyJump user123@123.456.1.2
+
+then on local machine do ssh remoteserver, or scp
+
 # Clangd LSP
 
 include path of c header files:
@@ -174,6 +196,12 @@ sudo systemctl restart docker
 sudo docker run hello-world
 ```
 
+# Later addition: Config docker for proxy
+
+cat /etc/systemd/system/docker.service.d/http-proxy.conf
+[Service]
+Environment="HTTP_PROXY=http://10.78.245.67:3128/" "HTTPS_PROXY=http://10.78.245.67:3128/" "NO_PROXY=dtrngpublic.cc.ebs.corp,localhost,10.78.245.67"
+
 ## Example image
 
 Create Dockerfile
@@ -325,3 +353,33 @@ matlab -c 27122@license01.cc.ebs.corp
 ```
 export LM_LICENSE_FILE=27130@license01.cc.ebs.corp:27122@license01.cc.ebs.corp
 ```
+
+# Matlab Alternative
+
+MATLAB, Simulink and DSP Builder Advanced
+Install MATLAB with MPM:
+
+```bash
+wget https://www.mathworks.com/mpm/glnxa64/mpm
+chmod +x mpm
+sudo -E ./mpm install --release=R2022b --destination=/home/user/matlab/ --products MATLAB Simulink Fixed-Point_Designer
+```
+
+The matlab/bin directory needs to be on path.
+Fix Simulink font library issue:
+
+```bash
+cd ~/matlab/bin/glnxa64/
+sudo mkdir exclude
+sudo mv libfreetype.so.6 exclude/libfreetype.so.6
+```
+
+Install the Quartus toolchain with DSPBA.
+Start DSPBA with a script, e.g.:
+
+```bash
+cd ~/tool/prototyping
+export LM_LICENSE_FILE=foobar
+~/intelFPGA_pro/24.2/quartus/dspba/dsp_builder.sh
+```
+
