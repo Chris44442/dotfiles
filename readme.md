@@ -246,6 +246,12 @@ When a container is running you can access its terminal with:
 sudo docker exec -it my-container /bin/bash
 ```
 
+To use without sudo:  
+sudo usermod -aG docker $USER  
+relog or reboot  
+to use from images from server, certificates may be required:  
+COPY certs/* /usr/local/share/ca-certificates  
+RUN update-ca-certificates
 
 ## Arch
 
@@ -301,6 +307,28 @@ sudo apt install dos2unix
 sudo apt install make
 sudo apt install build-essential
 ```
+
+## Hyper-V
+
+install windows hyper-v  
+in windows search type in "hyper-v"  
+enable checkbox in windows features  
+reboot  
+run hyper-v  
+in hyper-v import virtual computer  
+dir structure must be e.g. Quartus13/Snapshots, Quartus13/Virtual Hard Disks and Quartus13/Virtual Machines. Import from the Quartus13 directory  
+start imported virtual computer  
+if applicable in the popup option box set resolution and under advanced options enable access to e.g. hard drives from the host pc  
+
+Bei network adapter problemen (error code 56) in geraete manager -> intel network adapter deinstallieren. Danach nach neuer hardware suchen. Network adapter code 56 sollte jetzt weg sein.
+
+### Linux - convert hyper-v to qemu kvm
+
+sudo apt install qemu-utils  
+qemu-img convert -f vhdx -O qcow2 /path/to/hyperv.vhdx /path/to/kvm_disk.qcow2  
+open the .qcow2 storage from qemu kvm  
+in the windows machine it may be necessary to remove the network adapters from the device manager and reboot. Use e1000e from qemu kvm.  
+
 
 # Matlab, Simulink and DSPBA
 
@@ -388,6 +416,8 @@ export LM_LICENSE_FILE=foobar
 
 download e.g. ```armv7-eabihf--glibc--stable-2024.02-1``` from [bootlin toolchains](https://toolchains.bootlin.com/downloads/releases/toolchains/armv7-eabihf/tarballs/)
 
+[Linaro alternative](https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabi/) which also has gnueabihf somewhere.
+
 configure the .cargo/config.toml like so:
 
 ```toml
@@ -397,4 +427,18 @@ target = "arm-unknown-linux-gnueabihf"
 [target.arm-unknown-linux-gnueabihf]
 linker = "/home/chris/repo/cyclone5_soc_fpga_config_tool/armv7-eabihf--glibc--stable-2024.02-1/bin/arm-buildroot-linux-gnueabihf-gcc"
 ```
+
+# QuestaSim on Ubuntu
+
+sudo apt install libxft2 libxft2:i386 lib32ncurses6  
+sudo apt install libxext6  
+sudo apt install libxext6:i386  
+sudo apt install lib32stdc++6
+
+
+# kubuntu networking with developer network plus network card
+
+in the kde connections setting, set both connections to restrict to device and give both of them unique names  
+ipv4 and ipv6 of developer lan should be set to automatic.  
+ipv4 of local lan should be set to manual, then add desired ip and netmask. Enable checkbox ipv4 is required for this connection.  
 
