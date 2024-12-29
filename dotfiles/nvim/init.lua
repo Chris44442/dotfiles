@@ -26,6 +26,9 @@ vim.opt.breakindent = true
 -- Save undo history
 vim.opt.undofile = true
 
+vim.cmd('autocmd BufEnter * set formatoptions-=cro')
+vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')
+
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -95,12 +98,15 @@ require("lazy").setup({
     config = function()
       require'hop'.setup { keys = 'uhetpgcasrkmidxbon'}
       local hop = require('hop')
-      local directions = require('hop.hint').HintDirection
+      -- local _ = require('hop.hint').HintDirection
       vim.keymap.set('', 'f', function()
-        hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = false })
-      end, {remap=true})
-      vim.keymap.set('', 't', function()
-        hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = false })
+        -- hop.hint_words({ current_line_only = false })
+        hop.hint_words()
+      -- vim.keymap.set('', 'f', function()
+      --   hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = false })
+      -- end, {remap=true})
+      -- vim.keymap.set('', 't', function()
+      --   hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = false })
       end, {remap=true})
     end,
   },
@@ -110,12 +116,13 @@ require("lazy").setup({
       vim.api.nvim_set_keymap('', '<leader>h', "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", {noremap=true, silent=true})
       vim.api.nvim_set_keymap('', '<leader>t', "<cmd>lua require('harpoon.mark').add_file()<CR>", {noremap=true, silent=true})
       require'harpoon'.setup {tabline = true}
-      vim.api.nvim_set_keymap('', '<C-h>', ":lua require('harpoon.ui').nav_file(1)<CR>", {noremap=true, silent=true})
-      vim.api.nvim_set_keymap('', '<C-t>', ":lua require('harpoon.ui').nav_file(2)<CR>", {noremap=true, silent=true})
-      vim.api.nvim_set_keymap('', '<C-n>', ":lua require('harpoon.ui').nav_file(3)<CR>", {noremap=true, silent=true})
-      vim.api.nvim_set_keymap('', '<C-s>', ":lua require('harpoon.ui').nav_file(4)<CR>", {noremap=true, silent=true})
-      vim.api.nvim_set_keymap('', '<C-m>', ":lua require('harpoon.ui').nav_file(5)<CR>", {noremap=true, silent=true})
-      vim.api.nvim_set_keymap('', '<C-w>', ":lua require('harpoon.ui').nav_file(6)<CR>", {noremap=true, silent=true})
+      vim.api.nvim_set_keymap('n', '<Tab>', ":lua require('harpoon.ui').nav_next() <CR>", {noremap=true, silent=true})
+      vim.api.nvim_set_keymap('n', '<S-Tab>', ":lua require('harpoon.ui').nav_prev() <CR>", {noremap=true, silent=true})
+      -- vim.api.nvim_set_keymap('', '<C-t>', ":lua require('harpoon.ui').nav_file(2)<CR>", {noremap=true, silent=true})
+      -- vim.api.nvim_set_keymap('', '<C-n>', ":lua require('harpoon.ui').nav_file(3)<CR>", {noremap=true, silent=true})
+      -- vim.api.nvim_set_keymap('', '<C-s>', ":lua require('harpoon.ui').nav_file(4)<CR>", {noremap=true, silent=true})
+      -- vim.api.nvim_set_keymap('', '<C-m>', ":lua require('harpoon.ui').nav_file(5)<CR>", {noremap=true, silent=true})
+      -- vim.api.nvim_set_keymap('', '<C-w>', ":lua require('harpoon.ui').nav_file(6)<CR>", {noremap=true, silent=true})
       vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {command = "highlight! HarpoonInactive guibg=#NONE guifg=#999999" })
       vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {command = "highlight! HarpoonNumberInactive guibg=#NONE guifg=#999999" })
       vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {command = "highlight! HarpoonActive guibg=#414868" })
@@ -486,14 +493,22 @@ require("lazy").setup({
       local colors = require('tokyonight.colors').setup()
       vim.api.nvim_set_hl(0, '@Attribute', { fg = colors.yellow })
       vim.api.nvim_set_hl(0, '@Type', { fg = colors.blue })
+      vim.api.nvim_set_hl(0, '@Type.builtin', { fg = colors.blue })
       vim.api.nvim_set_hl(0, '@Function', { fg = colors.yellow })
       vim.api.nvim_set_hl(0, '@Function.builtin', { fg = colors.yellow })
       vim.api.nvim_set_hl(0, '@Number', { fg = colors.red })
       vim.api.nvim_set_hl(0, '@Number.Float', { fg = colors.red })
-      vim.api.nvim_set_hl(0, '@Operator', { fg = colors.white })
-      vim.api.nvim_set_hl(0, '@Keyword.Operator', { fg = colors.blue })
+      -- vim.api.nvim_set_hl(0, '@Operator', { fg = colors.white })
+      vim.api.nvim_set_hl(0, '@Operator', { fg = colors.blue })
+      -- vim.api.nvim_set_hl(0, '@Keyword.Operator', { fg = colors.blue })
+      vim.api.nvim_set_hl(0, '@Keyword.Operator', { fg = colors.purple })
       vim.api.nvim_set_hl(0, '@Keyword.Conditional', { fg = colors.purple })
       vim.api.nvim_set_hl(0, '@Keyword.Repeat', { fg = colors.purple })
+      vim.api.nvim_set_hl(0, '@Keyword.Import', { fg = colors.purple })
+      vim.api.nvim_set_hl(0, '@Constant.builtin', { fg = colors.purple })
+      vim.api.nvim_set_hl(0, '@Module', { fg = colors.white })
+      vim.api.nvim_set_hl(0, '@Property', { fg = colors.white })
+      vim.api.nvim_set_hl(0, '@Module.builtin', { fg = colors.white })
 
       -- Prefer git instead of curl in order to improve connectivity in some environments
       require("nvim-treesitter.install").prefer_git = true
@@ -501,9 +516,14 @@ require("lazy").setup({
       require("nvim-treesitter.configs").setup(opts)
       require('nvim-treesitter.parsers').get_parser_configs().vhdl = {
         install_info = {
-          url = "https://github.com/alemuller/tree-sitter-vhdl.git",
-          files = { 'src/parser.c' },
-          branch = 'main',
+          -- url = "https://github.com/alemuller/tree-sitter-vhdl.git",
+          url = "https://github.com/jpt13653903/tree-sitter-vhdl",
+          -- files = { 'src/parser.c' },
+          files = { 'src/parser.c', 'src/scanner.c' },
+          -- branch = 'main',
+          -- branch = 'master',
+          branch = 'develop',
+          -- branch = 'experiment/anonymous_keywords',
           generate_requires_npm = false, -- if stand-alone parser without npm dependencies
           requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
         },
