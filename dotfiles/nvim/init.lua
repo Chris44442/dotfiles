@@ -20,14 +20,15 @@ vim.opt.showmode = false
 -- Sync clipboard between OS and Neovim.
 vim.opt.clipboard = "unnamedplus"
 
+-- Prevent the annoying auto comments
+vim.cmd('autocmd BufEnter * set formatoptions-=cro')
+vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')
+
 -- Enable break indent
 vim.opt.breakindent = true
 
 -- Save undo history
 vim.opt.undofile = true
-
-vim.cmd('autocmd BufEnter * set formatoptions-=cro')
-vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
@@ -61,10 +62,7 @@ vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "🔭󰭎 Show diagnostic [E]rror messages" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "📅 Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostic List" })
 
 vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
@@ -98,15 +96,8 @@ require("lazy").setup({
     config = function()
       require'hop'.setup { keys = 'uhetpgcasrkmidxbon'}
       local hop = require('hop')
-      -- local _ = require('hop.hint').HintDirection
       vim.keymap.set('', 'f', function()
-        -- hop.hint_words({ current_line_only = false })
         hop.hint_words()
-      -- vim.keymap.set('', 'f', function()
-      --   hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = false })
-      -- end, {remap=true})
-      -- vim.keymap.set('', 't', function()
-      --   hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = false })
       end, {remap=true})
     end,
   },
@@ -116,13 +107,8 @@ require("lazy").setup({
       vim.api.nvim_set_keymap('', '<leader>h', "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", {noremap=true, silent=true})
       vim.api.nvim_set_keymap('', '<leader>t', "<cmd>lua require('harpoon.mark').add_file()<CR>", {noremap=true, silent=true})
       require'harpoon'.setup {tabline = true}
-      vim.api.nvim_set_keymap('n', '<Tab>', ":lua require('harpoon.ui').nav_next() <CR>", {noremap=true, silent=true})
-      vim.api.nvim_set_keymap('n', '<S-Tab>', ":lua require('harpoon.ui').nav_prev() <CR>", {noremap=true, silent=true})
-      -- vim.api.nvim_set_keymap('', '<C-t>', ":lua require('harpoon.ui').nav_file(2)<CR>", {noremap=true, silent=true})
-      -- vim.api.nvim_set_keymap('', '<C-n>', ":lua require('harpoon.ui').nav_file(3)<CR>", {noremap=true, silent=true})
-      -- vim.api.nvim_set_keymap('', '<C-s>', ":lua require('harpoon.ui').nav_file(4)<CR>", {noremap=true, silent=true})
-      -- vim.api.nvim_set_keymap('', '<C-m>', ":lua require('harpoon.ui').nav_file(5)<CR>", {noremap=true, silent=true})
-      -- vim.api.nvim_set_keymap('', '<C-w>', ":lua require('harpoon.ui').nav_file(6)<CR>", {noremap=true, silent=true})
+      vim.api.nvim_set_keymap('', '<Tab>', ":lua require('harpoon.ui').nav_next()<CR>", {noremap=true, silent=true})
+      vim.api.nvim_set_keymap('', '<S-Tab>', ":lua require('harpoon.ui').nav_prev()<CR>", {noremap=true, silent=true})
       vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {command = "highlight! HarpoonInactive guibg=#NONE guifg=#999999" })
       vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {command = "highlight! HarpoonNumberInactive guibg=#NONE guifg=#999999" })
       vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {command = "highlight! HarpoonActive guibg=#414868" })
@@ -156,22 +142,9 @@ require("lazy").setup({
     },
   },
 
-  {"folke/which-key.nvim",
-    event = "VimEnter",
-    config = function() -- This is the function that runs, AFTER loading
-      require("which-key").setup()
-      require("which-key").register({
-        ["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
-        ["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
-        ["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
-        ["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
-        ["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
-        ["<leader>t"] = { name = "[T]oggle", _ = "which_key_ignore" },
-      })
-      require("which-key").register({
-        ["<leader>h"] = { "Git [H]unk" },
-      }, { mode = "v" })
-    end,
+  {
+'folke/which-key.nvim',
+    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
   },
 
   {"nvim-telescope/telescope.nvim",
@@ -202,34 +175,19 @@ require("lazy").setup({
       pcall(require("telescope").load_extension, "ui-select")
 
       local builtin = require("telescope.builtin")
-      vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "🔭 Help" })
-      vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "🔭 Keymaps" })
-      vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "🔭 Files" })
-      -- vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
-      vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "🔭 Word" })
-      vim.keymap.set("n", "<leader>st", builtin.live_grep, { desc = "🔭 Grep Workspace" })
-      vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "🔭 Diagnostics" })
-      vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "🔭 Resume" })
-      vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '🔭 Recent' })
-      vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "🔭 Buffers" })
-
-      vim.keymap.set("n", "<leader>a", function()
-        builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-          winblend = 10,
-          previewer = false,
-        }))
-      end, { desc = "🔭 Current Buffer" })
-
-      vim.keymap.set("n", "<leader>s/", function()
-        builtin.live_grep({
-          grep_open_files = true,
-          prompt_title = "Live Grep in Open Files",
-        })
-      end, { desc = "🔭 Grep Open Files" })
-
+      vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "fzf Help" })
+      vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "fzf Keymaps" })
+      vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "fzf Files"})
+      vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "fzf Telescope Builtins" })
+      vim.keymap.set("n", "<leader>st", builtin.live_grep, { desc = "fzf Grep Workspace" })
+      vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "fzf Diagnostics" })
+      vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "fzf Resume" })
+      vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = 'fzf Recent' })
+      vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "fzf Buffers" })
+      vim.keymap.set("n", "<leader>a", builtin.current_buffer_fuzzy_find, { desc = 'fzf Current Buffer' })
       vim.keymap.set("n", "<leader>sn", function()
         builtin.find_files({ cwd = vim.fn.stdpath("config") })
-      end, { desc = "🔭 Config" })
+      end, { desc = "fzf Config" })
     end,
   },
 
@@ -249,20 +207,10 @@ require("lazy").setup({
           local map = function(keys, func, desc)
             vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
           end
-          map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-          map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-          map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-          map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
-          map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-          map(
-            "<leader>ws",
-            require("telescope.builtin").lsp_dynamic_workspace_symbols,
-            "[W]orkspace [S]ymbols"
-          )
-          map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-          map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+          map("gd", require("telescope.builtin").lsp_definitions, "Goto Definition")
+          map("gr", require("telescope.builtin").lsp_references, "Goto References")
+          map("<leader>r", vim.lsp.buf.rename, "Rename")
           map("K", vim.lsp.buf.hover, "Hover Documentation")
-          map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
@@ -289,15 +237,6 @@ require("lazy").setup({
                 vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
               end,
             })
-          end
-
-          -- The following autocommand is used to enable inlay hints in your
-          -- code, if the language server you are using supports them
-          -- This may be unwanted, since they displace some of your code
-          if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-            map("<leader>th", function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-            end, "[T]oggle Inlay [H]ints")
           end
         end,
       })
@@ -347,29 +286,7 @@ require("lazy").setup({
   {"hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-      {
-        "L3MON4D3/LuaSnip",
-        build = (function()
-          -- Build Step is needed for regex support in snippets.
-          -- This step is not supported in many windows environments.
-          -- Remove the below condition to re-enable on windows.
-          if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
-            return
-          end
-          return "make install_jsregexp"
-        end)(),
-        dependencies = {
-          -- `friendly-snippets` contains a variety of premade snippets.
-          --    See the README about individual language/framework/plugin snippets:
-          --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
-        },
-      },
+      "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
@@ -410,25 +327,12 @@ require("lazy").setup({
             scrollbar = '',
           },
         },
-        completion = { completeopt = "menu,menuone,noinsert,preview,noselect" },
+        completion = {
+          completeopt = "menu,menuone,noinsert,preview,noselect",
+        },
         mapping = cmp.mapping.preset.insert({
-          ["<C-n>"] = cmp.mapping.select_next_item(),
-          ["<C-p>"] = cmp.mapping.select_prev_item(),
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ['<Tab>'] = cmp.mapping.confirm({ select = true }),
           ['<CR>'] = cmp.mapping.confirm({ select = true }),
-          ["<C-Space>"] = cmp.mapping.complete({}),
-          ["<C-l>"] = cmp.mapping(function()
-            if luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
-            end
-          end, { "i", "s" }),
-          ["<C-h>"] = cmp.mapping(function()
-            if luasnip.locally_jumpable(-1) then
-              luasnip.jump(-1)
-            end
-          end, { "i", "s" }),
         }),
         sources = {
           { name = "nvim_lsp" },
@@ -448,26 +352,11 @@ require("lazy").setup({
     end,
   },
 
-  { -- Collection of various small independent plugins/modules
-    "echasnovski/mini.nvim",
+  {"echasnovski/mini.nvim", -- Collection of various small independent plugins/modules
     config = function()
-      -- Better Around/Inside textobjects
-      -- Examples:
-      --  - va)  - [V]isually select [A]round [)]paren
-      --  - yinq - [Y]ank [I]nside [N]ext [']quote
-      --  - ci'  - [C]hange [I]nside [']quote
-      require("mini.ai").setup({ n_lines = 500 })
-      -- Add/delete/replace surroundings (brackets, quotes, etc.)
-      -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-      -- - sd'   - [S]urround [D]elete [']quotes
-      -- - sr)'  - [S]urround [R]eplace [)] [']
-      require("mini.surround").setup()
-
+      require("mini.ai").setup({ n_lines = 500 }) -- more vim motions e.g. yiq or ci
       local statusline = require("mini.statusline")
       statusline.setup({ use_icons = vim.g.have_nerd_font })
-      -- You can configure sections in the statusline by overriding their
-      -- default behavior. For example, here we set the section for
-      -- cursor location to LINE:COLUMN
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
         return "%2l:%-2v"
@@ -475,67 +364,59 @@ require("lazy").setup({
     end,
   },
 
-  {
-    "rust-lang/rust.vim",
-    ft = "rust",
-    init = function ()
-      vim.g.rustfmt_autosave = 1
-    end
-  },
   {"nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     opts = {
-      -- ensure_installed = { "bash", "c", "rust", "diff", "html", "lua", "luadoc", "markdown", "vim", "vimdoc" },
+      ensure_installed = {"vhdl"},
       auto_install = true,
       highlight = {
         enable = true,
-        -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-        --  If you are experiencing weird indenting issues, add the language to
-        --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = { "ruby" },
       },
-      indent = { enable = true, disable = { "ruby" } },
     },
     config = function(_, opts)
-      local colors = require('tokyonight.colors').setup()
-      vim.api.nvim_set_hl(0, '@Attribute', { fg = colors.yellow })
-      vim.api.nvim_set_hl(0, '@Type', { fg = colors.blue })
-      vim.api.nvim_set_hl(0, '@Type.builtin', { fg = colors.blue })
-      vim.api.nvim_set_hl(0, '@Function', { fg = colors.yellow })
-      vim.api.nvim_set_hl(0, '@Function.builtin', { fg = colors.yellow })
-      vim.api.nvim_set_hl(0, '@Number', { fg = colors.red })
-      vim.api.nvim_set_hl(0, '@Number.Float', { fg = colors.red })
-      -- vim.api.nvim_set_hl(0, '@Operator', { fg = colors.white })
-      vim.api.nvim_set_hl(0, '@Operator', { fg = colors.blue })
-      -- vim.api.nvim_set_hl(0, '@Keyword.Operator', { fg = colors.blue })
-      vim.api.nvim_set_hl(0, '@Keyword.Operator', { fg = colors.purple })
-      vim.api.nvim_set_hl(0, '@Keyword.Conditional', { fg = colors.purple })
-      vim.api.nvim_set_hl(0, '@Keyword.Repeat', { fg = colors.purple })
-      vim.api.nvim_set_hl(0, '@Keyword.Import', { fg = colors.purple })
-      vim.api.nvim_set_hl(0, '@Constant.builtin', { fg = colors.purple })
-      vim.api.nvim_set_hl(0, '@Module', { fg = colors.white })
-      vim.api.nvim_set_hl(0, '@Property', { fg = colors.white })
-      vim.api.nvim_set_hl(0, '@Module.builtin', { fg = colors.white })
+      local purple = "#9d7cd8"
+      local yellow = "#e0af68"
+      local blue = "#7aa2f7"
+      local red = "#f7768e"
+      local white = "#c0caf5"
+      -- local green = "#73daca"
+      -- local light_green = "#9ece6a"
+      -- vim.api.nvim_set_hl(0, '@character', { fg = light_green  })
+      -- vim.api.nvim_set_hl(0, '@Attribute', { fg = colors.red })
+      -- vim.api.nvim_set_hl(0, '@Attribute.builtin', { fg = colors.red })
+    --   vim.api.nvim_set_hl(0, '@type', { fg = colors.blue })
+    --   vim.api.nvim_set_hl(0, '@Keyword.Type', { fg = colors.blue })
+    --   vim.api.nvim_set_hl(0, '@Type.builtin', { fg = colors.blue })
+      vim.api.nvim_set_hl(0, '@type.builtin', { fg = blue })
+      vim.api.nvim_set_hl(0, '@type', { fg = blue })
+      vim.api.nvim_set_hl(0, '@type.definition', { fg = white })
+      vim.api.nvim_set_hl(0, '@constant', { fg = white })
+      vim.api.nvim_set_hl(0, '@label', { fg = white })
+      -- vim.api.nvim_set_hl(0, '@Attribute.builtin', { fg = colors.red })
+      vim.api.nvim_set_hl(0, '@property', { fg = white })
+      -- vim.api.nvim_set_hl(0, '@Function', { fg = colors.yellow })
+      vim.api.nvim_set_hl(0, '@module', { fg = white })
+      vim.api.nvim_set_hl(0, '@Function', { fg = yellow })
+      vim.api.nvim_set_hl(0, '@Function.builtin', { fg = yellow})
+      vim.api.nvim_set_hl(0, '@Function.method', { fg = yellow})
+      vim.api.nvim_set_hl(0, '@number.integer', { fg = red })
+      vim.api.nvim_set_hl(0, '@number', { fg = red })
+      vim.api.nvim_set_hl(0, '@Number.Float', { fg = red })
+    --   vim.api.nvim_set_hl(0, '@Operator', { fg = colors.white })
+      vim.api.nvim_set_hl(0, '@Keyword.Operator', { fg = purple })
+      -- vim.api.nvim_set_hl(0, '@Keyword.Conditional', { fg = colors.purple })
+      vim.api.nvim_set_hl(0, '@Keyword.Conditional', { fg = purple })
+      vim.api.nvim_set_hl(0, '@Keyword.repeat', { fg = purple })
+      vim.api.nvim_set_hl(0, '@keyword.import', { fg = purple })
+      vim.api.nvim_set_hl(0, '@module.builtin', { fg = purple })
+      vim.api.nvim_set_hl(0, '@constant.builtin', { fg = purple })
+      vim.api.nvim_set_hl(0, '@constructor', { fg = purple })
+      -- vim.api.nvim_set_hl(0, '@character.special', { fg = light_green  })
+    --   vim.api.nvim_set_hl(0, '@Keyword.Repeat', { fg = colors.purple })
 
       -- Prefer git instead of curl in order to improve connectivity in some environments
       require("nvim-treesitter.install").prefer_git = true
-      ---@diagnostic disable-next-line: missing-fields
       require("nvim-treesitter.configs").setup(opts)
-      require('nvim-treesitter.parsers').get_parser_configs().vhdl = {
-        install_info = {
-          -- url = "https://github.com/alemuller/tree-sitter-vhdl.git",
-          url = "https://github.com/jpt13653903/tree-sitter-vhdl",
-          -- files = { 'src/parser.c' },
-          files = { 'src/parser.c', 'src/scanner.c' },
-          -- branch = 'main',
-          -- branch = 'master',
-          branch = 'develop',
-          -- branch = 'experiment/anonymous_keywords',
-          generate_requires_npm = false, -- if stand-alone parser without npm dependencies
-          requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
-        },
-        filetype = 'vhdl',
-      }
     end,
   },
 })

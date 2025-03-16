@@ -1,4 +1,3 @@
-test
 # GIT
 
 To access bitbucket repos with your public ssh key on it, copy your privat ssh key into:
