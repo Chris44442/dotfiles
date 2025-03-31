@@ -10,6 +10,8 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = "a"
 
+vim.diagnostic.config({ virtual_text = true })
+
 -- Render Whitespaces
 vim.cmd([[set list]])
 vim.cmd([[set listchars=space:·]])
