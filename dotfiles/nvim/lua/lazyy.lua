@@ -18,7 +18,8 @@ require 'lazy'.setup({
   require 'plugins/gitsigns',
   require 'plugins/lspconfig',
   require 'plugins/cmp',
-  require 'plugins/flash',
+  --require 'plugins/flash',
+  require 'plugins/hop',
   require 'plugins/colorizer',
   require 'plugins/mini',
 })
