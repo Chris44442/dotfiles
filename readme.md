@@ -442,3 +442,5 @@ in the kde connections setting, set both connections to restrict to device and g
 ipv4 and ipv6 of developer lan should be set to automatic.  
 ipv4 of local lan should be set to manual, then add desired ip and netmask. Enable checkbox ipv4 is required for this connection.  
 
+On one occasion setting the local ip adresses to 192.168.1.1 for host and 192.168.1.2 for embedded device did help. Looked like a conflict with the internet ethernet.
+
